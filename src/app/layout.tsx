@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'Uncle Pete Laboratories',
-  description: 'Advanced Scientific Solutions',
+  title: "Uncle Pete's Labs",
+  description: 'Experimental Games, Websites, and Fun',
 };
 
 export default function RootLayout({

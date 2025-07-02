@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Beaker } from 'lucide-react';
+import { Menu, Palette } from 'lucide-react';
 
 const navItems = [
   { href: '#about', label: 'About Us' },
-  { href: '#services', label: 'Services' },
+  { href: '#services', label: 'Creations' },
   { href: '#faq', label: 'FAQ' },
   { href: '#contact', label: 'Contact' },
 ];
@@ -34,7 +34,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold">
-            <Beaker className="h-7 w-7 text-primary" />
+            <Palette className="h-7 w-7 text-primary" />
             Uncle Pete Labs
           </Link>
 
@@ -60,7 +60,7 @@ export default function Header() {
               <SheetContent side="right">
                 <div className="flex flex-col gap-6 p-6">
                   <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold" onClick={() => setMobileMenuOpen(false)}>
-                    <Beaker className="h-7 w-7 text-primary" />
+                    <Palette className="h-7 w-7 text-primary" />
                     Uncle Pete Labs
                   </Link>
                   <nav className="flex flex-col gap-4">

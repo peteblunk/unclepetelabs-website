@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
-import TigerClawIcon from '@/components/icons/tiger-claw';
+import { ArrowRight, Wand2 } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -12,18 +11,18 @@ export default function Hero() {
       <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-block mb-4">
-             <TigerClawIcon className="h-12 w-12 text-primary" />
+             <Wand2 className="h-12 w-12 text-primary" />
           </div>
           <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 text-foreground">
-            Uncle Pete Laboratories
+            Uncle Pete's Labs
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Pioneering industrial solutions with the precision of science and the tenacity of a tiger.
+            Crafting delightful games, websites, and educational experiences with a dash of experimentation and a whole lot of fun.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">
               <a href="#services">
-                Explore Our Services <ArrowRight className="ml-2" />
+                Explore Our Creations <ArrowRight className="ml-2" />
               </a>
             </Button>
             <Button asChild size="lg" variant="outline">

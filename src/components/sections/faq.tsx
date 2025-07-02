@@ -3,24 +3,24 @@ import FaqSuggester from '@/components/faq-suggester';
 
 const faqItems = [
   {
-    question: "What is the standard turnaround time for sample analysis?",
-    answer: "Our standard turnaround time is 5-7 business days. Expedited services are available for an additional fee. Please contact us for a specific quote on your project.",
+    question: "Do you do custom game or website development?",
+    answer: "Absolutely! We love collaborating on unique projects. Get in touch via our contact form with your idea, and let's see what we can create together.",
   },
   {
-    question: "How should I prepare and ship my samples?",
-    answer: "Proper sample preparation is crucial. Please refer to our detailed 'Sample Submission Guide' available on our resources page, or contact our support team for specific instructions related to your sample type.",
+    question: "What platforms do you develop games for?",
+    answer: "We primarily focus on web-based games (HTML5) that can be played anywhere, and desktop games for PC and Mac. We're always experimenting, so this may expand in the future!",
   },
   {
-    question: "Do you offer consultation on test results?",
-    answer: "Yes, all our testing services include a detailed report. A complimentary consultation with one of our lead scientists to discuss the results and their implications is also included.",
+    question: "Can I use your educational materials in my classroom?",
+    answer: "Yes! Most of our educational content is released under a Creative Commons license for non-commercial use. Please check the specific material for its license details before using.",
   },
   {
-    question: "Are your laboratory procedures accredited?",
-    answer: "Absolutely. Uncle Pete Laboratories is accredited under ISO/IEC 17025 and we adhere to strict quality control protocols to ensure the highest standard of accuracy and reliability.",
+    question: "How does your 'experimental' process work?",
+    answer: "We embrace a rapid-prototyping and iterative design philosophy. We build, test, play, and refine, allowing happy accidents and creative detours to shape the final product. It's organized chaos, and it's a lot of fun!",
   },
   {
-    question: "Can you develop a custom testing method for our product?",
-    answer: "Yes, our R&D team specializes in creating and validating custom testing methodologies tailored to unique products and regulatory requirements. Contact us to discuss your project needs.",
+    question: "I have a great idea for a game/app. Can we partner up?",
+    answer: "We're always open to interesting proposals. Pitch us your concept, and if it aligns with our vision and current workload, we'd be excited to discuss a potential partnership.",
   },
 ];
 

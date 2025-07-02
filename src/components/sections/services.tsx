@@ -1,37 +1,36 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Beaker, FlaskConical, ClipboardList, Settings, ShieldCheck, Microscope } from 'lucide-react';
-import TigerClawIcon from '../icons/tiger-claw';
+import { Gamepad2, MousePointerClick, BookOpen, ToyBrick, DraftingCompass, Paintbrush } from 'lucide-react';
 
 const services = [
   {
-    icon: Beaker,
-    title: 'Chemical Analysis',
-    description: 'Precise analysis of chemical compounds and materials using state-of-the-art equipment.',
+    icon: Gamepad2,
+    title: 'Game Development',
+    description: 'Crafting fun and immersive games for web and desktop platforms.',
   },
   {
-    icon: FlaskConical,
-    title: 'Formulation Development',
-    description: 'Creating and optimizing chemical formulations for industrial and commercial applications.',
+    icon: MousePointerClick,
+    title: 'Web Design & Development',
+    description: 'Building beautiful, modern, and responsive websites that tell your story.',
   },
   {
-    icon: ClipboardList,
-    title: 'Regulatory Compliance Testing',
-    description: 'Ensuring your products meet all required industry standards and safety regulations.',
+    icon: BookOpen,
+    title: 'Educational Content',
+    description: 'Creating interactive materials and tools that make learning an adventure.',
   },
   {
-    icon: Settings,
-    title: 'Process Optimization',
-    description: 'Improving your manufacturing processes for increased efficiency, yield, and safety.',
+    icon: ToyBrick,
+    title: 'Interactive Experiences',
+    description: 'Designing unique digital installations and web-based interactive art.',
   },
   {
-    icon: ShieldCheck,
-    title: 'Quality Assurance',
-    description: 'Comprehensive testing protocols to guarantee the quality and consistency of your products.',
+    icon: DraftingCompass,
+    title: 'Creative Prototyping',
+    description: 'Rapidly bringing your ideas to life with playable prototypes and mockups.',
   },
   {
-    icon: Microscope,
-    title: 'Materials Science',
-    description: 'In-depth study and testing of material properties for advanced applications.',
+    icon: Paintbrush,
+    title: 'Digital Art & Assets',
+    description: 'Producing custom 2D/3D art, animations, and assets for your projects.',
   },
 ];
 
@@ -40,9 +39,9 @@ export default function Services() {
     <section id="services" className="py-20 md:py-28 bg-card">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Our Services</h2>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Our Creations</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            Delivering robust, reliable, and reproducible results for every project.
+            From whimsical games to polished websites, here's what we cook up in our lab.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Beaker, Twitter, Linkedin, Gitlab } from 'lucide-react';
+import { Palette, Twitter, Linkedin, Gitlab } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -7,11 +7,11 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
-            <Beaker className="h-6 w-6 text-primary" />
-            <p className="font-headline text-lg font-semibold">Uncle Pete Laboratories</p>
+            <Palette className="h-6 w-6 text-primary" />
+            <p className="font-headline text-lg font-semibold">Uncle Pete's Labs</p>
           </div>
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Uncle Pete Laboratories. All rights reserved.
+            &copy; {new Date().getFullYear()} Uncle Pete's Labs. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <Link href="#" aria-label="Twitter">

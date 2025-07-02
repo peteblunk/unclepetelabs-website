@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 const formSchema = z.object({
   userInput: z.string().min(10, {
-    message: 'Please describe your issue in at least 10 characters.',
+    message: 'Please describe your question in at least 10 characters.',
   }),
 });
 

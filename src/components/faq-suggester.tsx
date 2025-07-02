@@ -69,7 +69,7 @@ export default function FaqSuggester() {
             <Textarea
               id="userInput"
               name="userInput"
-              placeholder="e.g., 'What's the best way to test material durability under high heat?'"
+              placeholder="e.g., 'Do you make mobile games?' or 'Can you build an e-commerce site?'"
               rows={4}
               required
               className="bg-background"

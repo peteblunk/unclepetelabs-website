@@ -10,7 +10,7 @@ export default function Contact() {
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Get In Touch</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            We're here to help with your industrial challenges. Reach out to us for quotes, consultations, or any inquiries.
+            Have a project in mind, a question, or just want to say hello? We'd love to hear from you.
           </p>
         </div>
 
@@ -22,9 +22,9 @@ export default function Contact() {
                         <CardTitle className="font-headline">Email Us</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <p className="text-muted-foreground">For general inquiries and service requests.</p>
-                        <a href="mailto:services@unclepetelaboratories.net" className="font-semibold text-primary hover:underline">
-                            services@unclepetelaboratories.net
+                        <p className="text-muted-foreground">For project quotes and general inquiries.</p>
+                        <a href="mailto:hello@unclepetelaboratories.net" className="font-semibold text-primary hover:underline">
+                            hello@unclepetelaboratories.net
                         </a>
                     </CardContent>
                 </Card>
@@ -44,19 +44,19 @@ export default function Contact() {
                         <CardTitle className="font-headline">Our Location</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <p className="text-muted-foreground">123 Industrial Parkway,</p>
-                        <p className="font-semibold text-foreground">Steeltown, USA 12345</p>
+                        <p className="text-muted-foreground">123 Creative Parkway,</p>
+                        <p className="font-semibold text-foreground">Funville, USA 12345</p>
                     </CardContent>
                 </Card>
             </div>
              <div className="rounded-lg overflow-hidden shadow-lg h-full">
                  <Image
                     src="https://placehold.co/600x700.png"
-                    alt="Industrial building exterior"
+                    alt="A modern, creative office space"
                     width={600}
                     height={700}
                     className="w-full h-full object-cover"
-                    data-ai-hint="industrial building"
+                    data-ai-hint="creative office"
                     />
             </div>
         </div>
