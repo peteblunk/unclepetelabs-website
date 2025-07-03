@@ -1,12 +1,12 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { getFaqSuggestions } from '@/app/actions';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { useEffect } from 'react';
+import { useActionState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Lightbulb, Loader2, ChevronsRight } from 'lucide-react';
 
@@ -36,7 +36,7 @@ function SubmitButton() {
 }
 
 export default function FaqSuggester() {
-  const [state, formAction] = useFormState(getFaqSuggestions, initialState);
+  const [state, formAction] = useActionState(getFaqSuggestions, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
