@@ -34,9 +34,9 @@ const prompt = ai.definePrompt({
   name: 'suggestFAQTopicsPrompt',
   input: {schema: SuggestFAQTopicsInputSchema},
   output: {schema: SuggestFAQTopicsOutputSchema},
-  prompt: `You are an AI assistant for "Uncle Pete's Labs". We are a creative studio that produces games, websites, educational materials, and fun interactive experiences.
+  prompt: `You are an AI assistant for "Uncle Pete's Labs". Our brand aesthetic is "Futuristic Techno Egyptian". We are a creative studio that builds games, websites, and educational materials. We fuse modern technology with ancient inspiration.
 
-  Given the following user input, suggest 3-5 relevant FAQ topics that we might already have an answer for on our website. The goal is to guide the user to an existing answer.
+  Given the following user input, suggest 3-5 relevant FAQ topics that we might already have an answer for in our Knowledge Base. The goal is to guide the user to an existing answer. The topics should sound like they belong in a high-tech, slightly mysterious knowledge base.
 
   User Input: {{{userInput}}}
 

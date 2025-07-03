@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Palette } from 'lucide-react';
+import { Menu } from 'lucide-react';
+import AnkhIcon from '@/components/icons/ankh-icon';
 
 const navItems = [
   { href: '#about', label: 'About Us' },
@@ -28,13 +29,13 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-card/80 backdrop-blur-sm border-b' : 'bg-transparent'
+        scrolled ? 'bg-card/80 backdrop-blur-sm border-b border-white/10' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold">
-            <Palette className="h-7 w-7 text-primary" />
+          <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold text-primary hover:text-accent transition-colors">
+            <AnkhIcon className="h-7 w-7" />
             Uncle Pete Labs
           </Link>
 
@@ -57,10 +58,10 @@ export default function Header() {
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right">
+              <SheetContent side="right" className="bg-background/95 backdrop-blur-sm">
                 <div className="flex flex-col gap-6 p-6">
-                  <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold" onClick={() => setMobileMenuOpen(false)}>
-                    <Palette className="h-7 w-7 text-primary" />
+                  <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold text-primary" onClick={() => setMobileMenuOpen(false)}>
+                    <AnkhIcon className="h-7 w-7" />
                     Uncle Pete Labs
                   </Link>
                   <nav className="flex flex-col gap-4">

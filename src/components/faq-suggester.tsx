@@ -19,7 +19,7 @@ const initialState = {
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className="w-full">
+    <Button type="submit" disabled={pending} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
       {pending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -50,15 +50,15 @@ export default function FaqSuggester() {
   }, [state, toast]);
 
   return (
-    <Card className="sticky top-24 bg-card/90 backdrop-blur-sm shadow-lg border-primary/20">
+    <Card className="sticky top-24 bg-card/90 backdrop-blur-sm shadow-lg border-accent/20">
       <CardHeader>
         <div className="flex items-center gap-3">
-            <div className="flex-shrink-0 bg-primary/10 p-2 rounded-md">
-                <Lightbulb className="h-6 w-6 text-primary" />
+            <div className="flex-shrink-0 bg-accent/10 p-2 rounded-md">
+                <Lightbulb className="h-6 w-6 text-accent" />
             </div>
             <div>
-                <CardTitle className="font-headline text-xl">AI Topic Suggester</CardTitle>
-                <CardDescription>Can't find your question? Let us help.</CardDescription>
+                <CardTitle className="font-headline text-xl text-primary">AI Topic Assistant</CardTitle>
+                <CardDescription>Can't find an answer? Let our AI help.</CardDescription>
             </div>
         </div>
       </CardHeader>
@@ -69,10 +69,10 @@ export default function FaqSuggester() {
             <Textarea
               id="userInput"
               name="userInput"
-              placeholder="e.g., 'Do you make mobile games?' or 'Can you build an e-commerce site?'"
+              placeholder="e.g., 'Do you do custom WebGL development?' or 'Can you build an educational app?'"
               rows={4}
               required
-              className="bg-background"
+              className="bg-background focus:border-accent"
             />
             {state?.errors?.userInput && (
               <p className="text-sm font-medium text-destructive">{state.errors.userInput[0]}</p>
@@ -83,11 +83,11 @@ export default function FaqSuggester() {
 
         {state.suggestions && state.suggestions.length > 0 && (
           <div className="mt-6">
-            <h4 className="font-headline font-semibold mb-3">Suggested Topics:</h4>
+            <h4 className="font-headline font-semibold mb-3 text-primary">Suggested Topics:</h4>
             <ul className="space-y-2">
               {state.suggestions.map((topic, index) => (
                 <li key={index} className="flex items-start gap-2 text-sm text-foreground">
-                    <ChevronsRight className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
+                    <ChevronsRight className="h-4 w-4 mt-0.5 text-accent flex-shrink-0" />
                     <span>{topic}</span>
                 </li>
               ))}

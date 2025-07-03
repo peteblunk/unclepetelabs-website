@@ -1,17 +1,18 @@
 import Link from 'next/link';
-import { Palette, Twitter, Linkedin, Gitlab } from 'lucide-react';
+import { Twitter, Linkedin, Gitlab } from 'lucide-react';
+import AnkhIcon from '@/components/icons/ankh-icon';
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t">
+    <footer className="bg-card border-t border-white/10">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <Palette className="h-6 w-6 text-primary" />
+          <div className="flex items-center gap-2 text-primary">
+            <AnkhIcon className="h-6 w-6" />
             <p className="font-headline text-lg font-semibold">Uncle Pete's Labs</p>
           </div>
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Uncle Pete's Labs. All rights reserved.
+            &copy; {new Date().getFullYear()} Uncle Pete's Labs. Ancient Knowledge, Modern Fun.
           </p>
           <div className="flex items-center gap-4">
             <Link href="#" aria-label="Twitter">

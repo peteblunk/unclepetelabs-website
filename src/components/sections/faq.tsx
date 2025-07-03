@@ -3,24 +3,24 @@ import FaqSuggester from '@/components/faq-suggester';
 
 const faqItems = [
   {
-    question: "Do you do custom game or website development?",
-    answer: "Absolutely! We love collaborating on unique projects. Get in touch via our contact form with your idea, and let's see what we can create together.",
+    question: "Do you take commissions for custom games or websites?",
+    answer: "Indeed. We thrive on collaboration for unique projects. Interface with us via our contact form with your project schematics, and let's construct something extraordinary together.",
   },
   {
-    question: "What platforms do you develop games for?",
-    answer: "We primarily focus on web-based games (HTML5) that can be played anywhere, and desktop games for PC and Mac. We're always experimenting, so this may expand in the future!",
+    question: "What platforms do you build for?",
+    answer: "Our primary development focuses on advanced web-based applications (WebAssembly, WebGL) and desktop experiences for PC and Mac. Our R&D department is always exploring new platforms.",
   },
   {
-    question: "Can I use your educational materials in my classroom?",
-    answer: "Yes! Most of our educational content is released under a Creative Commons license for non-commercial use. Please check the specific material for its license details before using.",
+    question: "Can your educational materials be integrated into our systems?",
+    answer: "Yes. Most of our educational modules are released under a flexible license for non-commercial integration. Please consult the documentation for each module for specific licensing protocols.",
   },
   {
-    question: "How does your 'experimental' process work?",
-    answer: "We embrace a rapid-prototyping and iterative design philosophy. We build, test, play, and refine, allowing happy accidents and creative detours to shape the final product. It's organized chaos, and it's a lot of fun!",
+    question: "What is your 'experimental' design protocol?",
+    answer: "We employ a rapid-prototyping and iterative design philosophy. We build, simulate, analyze, and refine, allowing for emergent properties and creative detours to shape the final construct. It's a structured form of innovative chaos.",
   },
   {
-    question: "I have a great idea for a game/app. Can we partner up?",
-    answer: "We're always open to interesting proposals. Pitch us your concept, and if it aligns with our vision and current workload, we'd be excited to discuss a potential partnership.",
+    question: "I have a concept for a game/app. Are you open to partnerships?",
+    answer: "We are always receptive to compelling proposals. Transmit your concept to us, and if it aligns with our current operational parameters and strategic vision, we would be interested in discussing a potential synergy.",
   },
 ];
 
@@ -29,9 +29,9 @@ export default function Faq() {
     <section id="faq" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Frequently Asked Questions</h2>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Knowledge Base</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            Have a question? We've got answers. If you don't find what you're looking for, try our AI assistant.
+            Have an inquiry? Access our records. If you don't find the data you seek, our AI can assist your query.
           </p>
         </div>
 
@@ -39,8 +39,8 @@ export default function Faq() {
           <div className="lg:col-span-3">
             <Accordion type="single" collapsible className="w-full">
               {faqItems.map((item, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="font-headline text-lg text-left">{item.question}</AccordionTrigger>
+                <AccordionItem key={index} value={`item-${index}`} className="border-primary/20">
+                  <AccordionTrigger className="font-headline text-lg text-left text-primary/80 hover:text-accent">{item.question}</AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
                     {item.answer}
                   </AccordionContent>
