@@ -5,7 +5,7 @@ import EyeOfHorusIcon from '../icons/eye-of-horus-icon';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 md:py-28 bg-card">
+    <section id="contact" className="py-20 md:py-28">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Establish a Connection</h2>

@@ -5,7 +5,7 @@ import SineWaveIcon from '@/components/icons/sine-wave-icon';
 export default function Hero() {
   return (
     <section id="home" className="relative bg-background overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32">
-       <div
+       {/* <div
         aria-hidden="true"
         className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/5 opacity-50"
       />
@@ -17,11 +17,11 @@ export default function Hero() {
         aria-hidden="true"
         className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 rounded-full bg-accent/5 blur-3xl animate-pulse delay-500"
       />
-
+ */}
       <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-block mb-4 p-3 bg-primary/10 rounded-full border border-primary/20">
-             <SineWaveIcon className="h-12 w-12 text-accent" />
+            <img src="/images/unclepetelogoblue.png" alt="Uncle Pete's Labs Logo" className="h-120 w-120" />
           </div>
           <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 text-foreground">
             Digital Creation. Ancient Inspiration.

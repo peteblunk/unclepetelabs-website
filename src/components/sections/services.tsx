@@ -36,7 +36,7 @@ const creations = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 md:py-28 bg-card">
+    <section id="services" className="py-20 md:py-28">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Our Digital Forges</h2>
