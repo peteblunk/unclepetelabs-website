@@ -44,7 +44,7 @@ export default function Header() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+                className="text-sm font-medium text-primary/80 transition-colors hover:text-electric-purple font-headline"
               >
                 {item.label}
               </a>
@@ -69,7 +69,7 @@ export default function Header() {
                       <a
                         key={item.label}
                         href={item.href}
-                        className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+                        className="text-lg font-medium text-electric-purple/80 transition-colors hover:text-primary font-headline"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.label}

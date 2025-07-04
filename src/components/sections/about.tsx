@@ -7,7 +7,7 @@ export default function About() {
     <section id="about" className="py-20 md:py-28">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Decoding Our Purpose</h2>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold">Decoding Our Purpose</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
             We are a creative laboratory where futuristic technology and ancient inspiration collide to produce games, websites, and educational tools.
           </p>
@@ -16,13 +16,12 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="relative rounded-lg overflow-hidden shadow-lg border border-primary/20">
              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/10 opacity-30 z-10" />
-            <Image
-              src="https://placehold.co/600x400.png"
+            <img
+              src="/images/our-mission-our-vision-image.png"
               alt="Futuristic glowing hieroglyphs on a dark metal wall"
               width={600}
               height={400}
-              className="w-full h-auto object-cover"
-              data-ai-hint="techno egyptian"
+              className="w-full h-auto object-cover"              
             />
           </div>
           <div className="space-y-6">

@@ -39,7 +39,7 @@ export default function Services() {
     <section id="services" className="py-20 md:py-28">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Our Digital Forges</h2>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold">Our Digital Forges</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
             From generative art to complex game systems, here's what we construct in our labs.
           </p>

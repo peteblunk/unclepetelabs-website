@@ -23,7 +23,7 @@ export default function Hero() {
           <div className="inline-block mb-4 p-3 bg-primary/10 rounded-full border border-primary/20">
             <img src="/images/unclepetelogoblue.png" alt="Uncle Pete's Labs Logo" className="h-120 w-120" />
           </div>
-          <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 text-foreground">
+          <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 text-electric-purple">
             Digital Creation. Ancient Inspiration.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">

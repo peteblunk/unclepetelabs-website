@@ -78,3 +78,6 @@
     scroll-behavior: smooth;
   }
 }
+h2 {
+  @apply text-electric-purple; 
+}

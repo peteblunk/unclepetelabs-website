@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import FaqSuggester from '@/components/faq-suggester';
+
 
 const faqItems = [
   {
@@ -7,8 +7,8 @@ const faqItems = [
     answer: "Indeed. We thrive on collaboration for unique projects. Interface with us via our contact form with your project schematics, and let's construct something extraordinary together.",
   },
   {
-    question: "What platforms do you build for?",
-    answer: "Our primary development focuses on advanced web-based applications (WebAssembly, WebGL) and desktop experiences for PC and Mac. Our R&D department is always exploring new platforms.",
+    question: "How do you honor the Hebrew God whose Ark it is?",
+    answer: "We take back one kadam, obviously.",
   },
   {
     question: "Can your educational materials be integrated into our systems?",
@@ -29,7 +29,7 @@ export default function Faq() {
     <section id="faq" className="py-20 md:py-28">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground">Knowledge Base</h2>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold">Knowledge Base</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
             Have an inquiry? Access our records. If you don't find the data you seek, our AI can assist your query.
           </p>
@@ -48,9 +48,7 @@ export default function Faq() {
               ))}
             </Accordion>
           </div>
-          <div className="lg:col-span-2">
-            <FaqSuggester />
-          </div>
+          
         </div>
       </div>
     </section>
