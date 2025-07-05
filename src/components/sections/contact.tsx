@@ -9,7 +9,7 @@ export default function Contact() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold">Establish a Connection</h2>
-          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto font-body">
             Have a project schematic, an inquiry, or simply wish to interface? We welcome the signal.
           </p>
         </div>
@@ -22,25 +22,25 @@ export default function Contact() {
                         <CardTitle className="font-headline text-primary">Email Transmission</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <p className="text-muted-foreground">For project proposals and general inquiries.</p>
+                        <p className="font-body text-muted-foreground font-body">For project proposals and general inquiries.</p>
                         <a href="mailto:services@unclepetelaboratories.net" className="font-semibold text-accent hover:underline">
                             services@unclepetelaboratories.net
                         </a>
                     </CardContent>
                 </Card>
-                <Card className="hover:border-accent/50 transition-colors border-primary/20 bg-background/50">
+                <Card className="hover:border-accent/50 transition-colors border-primary/20 bg-background/50 font-body">
                     <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2">
                         <Phone className="h-6 w-6 text-accent" />
                         <CardTitle className="font-headline text-primary">Audio Comms</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <p className="font-muted text-primary">MON - SUN, 0900 - 2100 PST/PDT</p>
+                        <p className="font-body font-muted text-primary font-body">MON - SUN, 0900 - 2100 PST/PDT</p>
                         <p className="font-semibold text-primary">(206) 353-3981</p>
-                        <p className="font-muted text-primary">via text 24/7</p>
+                        <p className="font-muted text-primary font-body">via text 24/7</p>
                     </CardContent>
                 </Card>
                 <Card className="hover:border-accent/50 transition-colors border-primary/20 bg-background/50">
-                    <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2">
+                    <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 font-body">
                         <MapPin className="h-6 w-6 text-accent" />
                         <CardTitle className="font-headline text-primary">Physical Coordinates</CardTitle>
                     </CardHeader>

@@ -4,11 +4,11 @@ import { Cpu, Dna } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-28">
+    <section id="about">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold">Decoding Our Purpose</h2>
-          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto font-body">
             We are a creative laboratory where futuristic technology and ancient inspiration collide to produce games, websites, and educational tools.
           </p>
         </div>

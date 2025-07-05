@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Oxanium:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -71,13 +74,22 @@
   }
   body {
     @apply bg-background text-foreground;
- background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url("/images/background.png");
+ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/background.png");
  background-size: contain;
  background-position: center;
  background-repeat: repeat;
     scroll-behavior: smooth;
   }
 }
+
+#home {
+  background-color: transparent;
+}
 h2 {
   @apply text-electric-purple; 
+}
+
+section {
+ padding-top: 0;
+ padding-bottom: 0;
 }

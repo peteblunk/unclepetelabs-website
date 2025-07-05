@@ -36,11 +36,11 @@ const creations = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 md:py-28">
-      <div className="container mx-auto px-4">
+    <section id="services" className="">
+      <div className="container mx-auto px-4 mt-8">
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold">Our Digital Forges</h2>
-          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto font-body">
             From generative art to complex game systems, here's what we construct in our labs.
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function Services() {
                 <CardTitle className="font-headline pt-4 text-primary transition-colors group-hover:text-accent">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground text-sm">{service.description}</p>
+                <p className="text-muted-foreground text-sm font-body">{service.description}</p>
               </CardContent>
             </Card>
           ))}

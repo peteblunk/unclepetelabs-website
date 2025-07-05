@@ -30,8 +30,8 @@ export default function Faq() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold">Knowledge Base</h2>
-          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-            Have an inquiry? Access our records. If you don't find the data you seek, our AI can assist your query.
+          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto font-body">
+          You have questions. You seek answers. You may find some here. Others, you surely will not. For those, contact us directly and we will share what knowledge or wisdom we have. If that still does not suffice, we will help you reformulate your questions or pray with you that clarity will come.
           </p>
         </div>
 
@@ -48,6 +48,10 @@ export default function Faq() {
               ))}
             </Accordion>
           </div>
+          <div className="lg:col-span-2 flex justify-center items-center">
+            <img src="/images/blue-electric-quill.png" alt="Blue Electric Quill" className="object-contain w-full h-full" />
+          </div>
+
           
         </div>
       </div>
