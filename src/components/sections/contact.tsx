@@ -10,7 +10,7 @@ export default function Contact() {
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold">Establish a Connection</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto font-body">
-            Have a project schematic, an inquiry, or simply wish to interface? We welcome the signal.
+            Have a project? A schematic? That vague inkling before an idea arrives? Perhaps you are just lonely - but you're not alone. Remember that. Entreat us. The following ways of communing with us have been known to work from time to time. Prayer often helps.
           </p>
         </div>
 
@@ -23,8 +23,8 @@ export default function Contact() {
                     </CardHeader>
                     <CardContent>
                         <p className="font-body text-muted-foreground font-body">For project proposals and general inquiries.</p>
-                        <a href="mailto:services@unclepetelaboratories.net" className="font-semibold text-accent hover:underline">
-                            services@unclepetelaboratories.net
+                        <a href="mailto:rites@unclepetelaboratories.net" className="font-semibold text-accent hover:underline">
+                            rites@unclepetelaboratories.net
                         </a>
                     </CardContent>
                 </Card>

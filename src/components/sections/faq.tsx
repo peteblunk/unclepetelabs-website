@@ -4,7 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 const faqItems = [
   {
     question: "Do you take commissions for custom games or websites?",
-    answer: "Indeed. We thrive on collaboration for unique projects. Interface with us via our contact form with your project schematics, and let's construct something extraordinary together.",
+    answer: "Indeed. For the most part we toil alone in our cavernous digital spice mines doing what we will --that is not a complaint-- But with the right chemistry and - ahem - incentives - we love collaboration for unique projects. First, attempt to summon us by your preferred method. I always recommend including a prayer. Whatever it is we construct, I can promise you this: It will be something extraordinary.",
   },
   {
     question: "How do you honor the Hebrew God whose Ark it is?",
@@ -12,12 +12,12 @@ const faqItems = [
   },
   {
     question: "Can your educational materials be integrated into our systems?",
-    answer: "Yes. Most of our educational modules are released under a flexible license for non-commercial integration. Please consult the documentation for each module for specific licensing protocols.",
+    answer: "Probably. But rely less on systems and more on your heart. Turn off your targeting computer.",
   },
   {
     question: "What is your 'experimental' design protocol?",
-    answer: "We employ a rapid-prototyping and iterative design philosophy. We build, simulate, analyze, and refine, allowing for emergent properties and creative detours to shape the final construct. It's a structured form of innovative chaos.",
-  },
+    answer: "We employ a rapid-prototyping and iterative design philosophy. We build, simulate, analyze, and refine, allowing for emergent properties and creative detours to shape the final construct. It's a structured form of innovative chaos. Start the grind stone. We try to take up our cross, daily and follow in the footsteps of the Lord. We often fail. *shrug*",
+  }, 
   {
     question: "I have a concept for a game/app. Are you open to partnerships?",
     answer: "We are always receptive to compelling proposals. Transmit your concept to us, and if it aligns with our current operational parameters and strategic vision, we would be interested in discussing a potential synergy.",
@@ -31,7 +31,7 @@ export default function Faq() {
         <div className="text-center mb-12">
           <h2 className="font-headline text-4xl md:text-5xl font-bold">Knowledge Base</h2>
           <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto font-body">
-          You have questions. You seek answers. You may find some here. Others, you surely will not. For those, contact us directly and we will share what knowledge or wisdom we have. If that still does not suffice, we will help you reformulate your questions or pray with you that clarity will come.
+          You have questions. You seek answers. Some of them you may find here. Others, you surely will not. You may be surprised which is which, so contact us directly and we will share what knowledge or wisdom we have. If that still does not suffice, we will help you reformulate your questions or pray with you that clarity will come.
           </p>
         </div>
 

@@ -27,17 +27,10 @@ export default function Hero() {
             Digital Creation. Ancient Inspiration.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            We are a creative studio decoding the fun of the future. We build games, websites, and educational experiences that fuse modern tech with timeless wonder.
+            We are a creative studio decoding the fun of the future. We build games, websites, and educational experiences in the temporal realms, but ever conscious that we do so in the light and shadow of an unfathomable, Ultimate Mystery.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg shadow-accent/20">
-              <a href="#services">
-                Explore Our Creations <ArrowRight className="ml-2" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10 hover:text-primary-foreground">
-              <a href="#contact">Interface with Us</a>
-            </Button>
+          <div className="flex justify-center">
+            <img src="/images/toths-temple-complex.png" alt="Toth's Temple Complex" className="max-w-full h-auto" />
           </div>
         </div>
       </div>
