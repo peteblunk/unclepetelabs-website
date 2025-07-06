@@ -1,5 +1,6 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { CircuitBoard, Pyramid, Library, Globe, FlaskConical, Palette } from 'lucide-react';
+import Link from 'next/link';
 
 const creations = [
   {
@@ -48,16 +49,29 @@ export default function Services() {
           {creations.map((service) => (
             <Card key={service.title} className="group overflow-hidden text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-background/50 border border-primary/20 hover:border-accent">
               <CardHeader className="items-center">
-                 <div className="relative rounded-lg bg-primary/10 p-4 border border-primary/20 transition-all duration-300 group-hover:bg-accent/10 group-hover:border-accent/30">
-                   <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-secondary to-primary opacity-10 blur transition duration-500 group-hover:opacity-40 group-hover:duration-200"></div>
-                   <div className="relative">
-                     <service.icon className="h-10 w-10 text-primary transition-colors group-hover:text-accent" />
-                   </div>
-                 </div>
+                {service.title === 'Game Development' ? (
+                  <Link href="/game-development">
+                    <div className="relative rounded-lg bg-primary/10 p-4 border border-primary/20 transition-all duration-300 group-hover:bg-accent/10 group-hover:border-accent/30">
+                      <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-secondary to-primary opacity-10 blur transition duration-500 group-hover:opacity-40 group-hover:duration-200"></div>
+                      <div className="relative"><service.icon className="h-10 w-10 text-primary transition-colors group-hover:text-accent" /></div>
+                    </div>
+                  </Link>
+                ) : (
+                  <div className="relative rounded-lg bg-primary/10 p-4 border border-primary/20 transition-all duration-300 group-hover:bg-accent/10 group-hover:border-accent/30">
+                    <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-secondary to-primary opacity-10 blur transition duration-500 group-hover:opacity-40 group-hover:duration-200"></div>
+                    <div className="relative"><service.icon className="h-10 w-10 text-primary transition-colors group-hover:text-accent" /></div>
+                  </div>
+                )}
                 <CardTitle className="font-headline pt-4 text-primary transition-colors group-hover:text-accent">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground text-sm font-body">{service.description}</p>
+                {service.title === 'Game Development' ? (
+                  <Link href="/game-development">
+                    <p className="text-muted-foreground text-sm font-body">{service.description}</p>
+                  </Link>
+                ) : (
+                  <p className="text-muted-foreground text-sm font-body">{service.description}</p>
+                )}
               </CardContent>
             </Card>
           ))}
@@ -66,3 +80,4 @@ export default function Services() {
     </section>
   );
 }
+
