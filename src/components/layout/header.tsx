@@ -15,7 +15,7 @@ import {
 
 
 const navItems = [
-  { href: '#about', label: 'About Us' },
+  { href: '/#about', label: 'About Us' },
   {
     label: 'Creations',
     children: [
@@ -27,8 +27,8 @@ const navItems = [
       { href: '/digital-asset-forging', label: 'Digital Asset Forging' },
     ],
   },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
 export default function Header() {
