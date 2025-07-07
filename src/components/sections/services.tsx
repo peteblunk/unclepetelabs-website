@@ -47,33 +47,20 @@ export default function Services() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {creations.map((service) => (
-            <Card key={service.title} className="group overflow-hidden text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-background/50 border border-primary/20 hover:border-accent">
-              <CardHeader className="items-center">
-                {service.title === 'Game Development' ? (
-                  <Link href="/game-development">
-                    <div className="relative rounded-lg bg-primary/10 p-4 border border-primary/20 transition-all duration-300 group-hover:bg-accent/10 group-hover:border-accent/30">
-                      <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-secondary to-primary opacity-10 blur transition duration-500 group-hover:opacity-40 group-hover:duration-200"></div>
-                      <div className="relative"><service.icon className="h-10 w-10 text-primary transition-colors group-hover:text-accent" /></div>
-                    </div>
-                  </Link>
-                ) : (
+            <Link key={service.title} href={`/${service.title.toLowerCase().replace(/\s+/g, '-')}`}>
+              <Card className="group overflow-hidden text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-background/50 border border-primary/20 hover:border-accent">
+                <CardHeader className="items-center">
                   <div className="relative rounded-lg bg-primary/10 p-4 border border-primary/20 transition-all duration-300 group-hover:bg-accent/10 group-hover:border-accent/30">
                     <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-secondary to-primary opacity-10 blur transition duration-500 group-hover:opacity-40 group-hover:duration-200"></div>
                     <div className="relative"><service.icon className="h-10 w-10 text-primary transition-colors group-hover:text-accent" /></div>
-                  </div>
-                )}
-                <CardTitle className="font-headline pt-4 text-primary transition-colors group-hover:text-accent">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {service.title === 'Game Development' ? (
-                  <Link href="/game-development">
-                    <p className="text-muted-foreground text-sm font-body">{service.description}</p>
-                  </Link>
-                ) : (
+                    </div>
+                  <CardTitle className="font-headline pt-4 text-primary transition-colors group-hover:text-accent">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
                   <p className="text-muted-foreground text-sm font-body">{service.description}</p>
-                )}
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
