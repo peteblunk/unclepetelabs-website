@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Uncle Pete's Labs",
   description: 'Unlocking ancient creativity through modern technology. We build games, websites, and educational experiences.',
 };
+icons: {
+  icon: '/favicon.ico'
+}
 
 export default function RootLayout({
   children,
