@@ -10,7 +10,19 @@ const WebArchitecturePage: React.FC = () => {
       <Header />
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <h2>Web Architecture</h2>
-        <p>This page is dedicated to our Web Architecture services. Details about our capabilities and projects in web architecture will be added here soon.</p>
+ <p>This page is dedicated to our Web Architecture services. Enjoy the following examples of our work. Addiional projects will be added soon.</p>
+        <div style={{ backgroundColor: 'white', width: '100%', height: '600px' }}>
+ <iframe
+ src="https://usgs-stream-monitoring-4e84.vercel.app/"
+ width="100%"
+ height="600px"
+ style={{ border: 'none' }}
+ title="USGS Stream Monitoring Project"
+ />
+        </div>
+ <Link href="/usgs" passHref target="_blank" rel="noopener noreferrer">
+          See deployment here: https://unclepetelaboratories.net/usgs
+ </Link>
       </main>
     </>
   );
