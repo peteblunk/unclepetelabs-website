@@ -27,6 +27,13 @@ const navItems = [
       { href: '/digital-asset-forging', label: 'Digital Asset Forging' },
     ],
   },
+  {
+    label: 'Project Akh',
+    children: [
+      { href: '/akh', label: 'Dashboard' },
+      { href: '/akh/bond-project', label: 'The Bond Project (Per-hedj)' },
+    ],
+  },
   { href: '/#faq', label: 'FAQ' },
   { href: '/#contact', label: 'Contact' },
 ];

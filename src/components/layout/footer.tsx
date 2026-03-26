@@ -10,9 +10,14 @@ export default function Footer() {
             <img src="/images/thoth-in-chip.png" alt="Thoth in Chip Logo" className="h-16 w-16 object-contain" />
             <p className="font-headline text-4xl font-semibold">Uncle Pete Labs</p>
           </div>
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Uncle Pete Labs. Ancient Knowledge, Modern Fun.
-          </p>
+          <div className="flex flex-col items-center">
+            <p className="text-sm text-muted-foreground mb-1">
+              &copy; {new Date().getFullYear()} Uncle Pete Labs. Ancient Knowledge, Modern Fun.
+            </p>
+            <p className="text-[#33ff33]/80 font-mono text-xs flex items-center gap-2 tracking-wide drop-shadow-[0_0_5px_rgba(0,255,0,0.3)]">
+              Digital Services by Ka <span className="text-base">🪲🐦‍⬛🪶</span> — powered by the Ka Terminal
+            </p>
+          </div>
           <div className="flex items-center gap-4">
             <Link href="#" aria-label="Twitter">
               <Twitter className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
