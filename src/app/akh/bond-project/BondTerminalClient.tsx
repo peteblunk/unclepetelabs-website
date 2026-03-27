@@ -28,23 +28,46 @@ const calculateTail = (high: string, low: string) => {
 
 export default function BondTerminalClient({ initialData }: { initialData: any[] }) {
   const [filter, setFilter] = useState('ALL');
+  const [heroFilter, setHeroFilter] = useState('ALL');
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Parse the raw Treasury API data into our clean mock format
-  const parsedData = initialData.map((raw: any, index: number) => ({
-    id: `${raw.cusip || 'unknown'}-${index}`,
-    type: `${raw.security_term} ${raw.security_type}`,
-    size: formatMoney(raw.offering_amt),
-    yield: raw.high_yield !== 'null' ? `${parseFloat(raw.high_yield).toFixed(3)}%` : 'N/A',
-    tail: calculateTail(raw.high_yield, raw.low_yield),
-    btc: raw.bid_to_cover_ratio !== 'null' ? parseFloat(raw.bid_to_cover_ratio).toFixed(2) : 'N/A',
-    primary: calculateAllotment(raw.primary_dealer_accepted, raw.total_accepted),
-    direct: calculateAllotment(raw.direct_bidder_accepted, raw.total_accepted),
-    indirect: calculateAllotment(raw.indirect_bidder_accepted, raw.total_accepted),
-    rawDate: new Date(raw.auction_date),
-  }));
+  const parsedData = initialData.map((raw: any, index: number) => {
+    // Determine the true yield (Bills use investment rate or discount rate)
+    let finalYield = 'N/A';
+    if (raw.high_yield !== 'null') {
+      finalYield = `${parseFloat(raw.high_yield).toFixed(3)}%`;
+    } else if (raw.high_investment_rate !== 'null') {
+      finalYield = `${parseFloat(raw.high_investment_rate).toFixed(3)}%`;
+    } else if (raw.high_discnt_rate !== 'null') {
+      finalYield = `${parseFloat(raw.high_discnt_rate).toFixed(3)}%`;
+    }
 
-  // Apply quick filters
+    // Proxy tail calculation depending on instrument
+    let finalTail = 'N/A';
+    if (raw.high_yield !== 'null' && raw.low_yield !== 'null') {
+      finalTail = calculateTail(raw.high_yield, raw.low_yield);
+    } else if (raw.high_investment_rate !== 'null' && raw.low_investment_rate !== 'null') {
+      finalTail = calculateTail(raw.high_investment_rate, raw.low_investment_rate);
+    } else if (raw.high_discnt_rate !== 'null' && raw.low_discnt_rate !== 'null') {
+      finalTail = calculateTail(raw.high_discnt_rate, raw.low_discnt_rate);
+    }
+
+    return {
+      id: `${raw.cusip || 'unknown'}-${index}`,
+      type: raw.security_type === 'Bill' ? `${raw.security_term} T-Bill` : `${raw.security_term} ${raw.security_type}`,
+      size: formatMoney(raw.offering_amt),
+      yield: finalYield,
+      tail: finalTail,
+      btc: raw.bid_to_cover_ratio !== 'null' ? parseFloat(raw.bid_to_cover_ratio).toFixed(2) : 'N/A',
+      primary: calculateAllotment(raw.primary_dealer_accepted, raw.total_accepted),
+      direct: calculateAllotment(raw.direct_bidder_accepted, raw.total_accepted),
+      indirect: calculateAllotment(raw.indirect_bidder_accepted, raw.total_accepted),
+      rawDate: new Date(raw.auction_date),
+    };
+  });
+
+  // Apply quick filters for the tape
   const filteredData = parsedData.filter((item: any) => {
     if (filter === 'ALL') return true;
     const typeStr = item.type.toLowerCase();
@@ -54,14 +77,28 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
     return true;
   });
 
-  const completedAuctions = filteredData.filter((a: any) => a.yield !== 'N/A');
-  const latestCompleted = completedAuctions[0] || null;
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
 
-  // Find the next upcoming auction (yield is N/A, sorted by closest date first)
-  const upcomingAuctions = filteredData
-    .filter((a: any) => a.yield === 'N/A')
+  // Historical tape should only include completed auctions
+  const historicalTape = filteredData.filter((a: any) => a.yield !== 'N/A' || a.rawDate < now);
+
+  // Hero filter logic (separate from tape filter)
+  const completedAuctions = parsedData.filter((a: any) => a.yield !== 'N/A');
+  const heroFiltered = completedAuctions.filter((item: any) => {
+    if (heroFilter === 'ALL') return true;
+    const typeStr = item.type.toLowerCase();
+    if (heroFilter === 'BILLS') return typeStr.includes('bill') || typeStr.includes('cmb');
+    if (heroFilter === 'NOTES') return typeStr.includes('note');
+    if (heroFilter === 'BONDS') return typeStr.includes('bond') || typeStr.includes('tips');
+    return true;
+  });
+  const latestCompleted = heroFiltered[0] || null;
+
+  // Upcoming auctions: Yield is N/A AND date is today or in the future
+  const upcomingAuctions = parsedData
+    .filter((a: any) => a.yield === 'N/A' && a.rawDate >= now)
     .sort((a: any, b: any) => a.rawDate.getTime() - b.rawDate.getTime());
-  const nextUpcoming = upcomingAuctions[0] || null;
 
   return (
     <div className="min-h-screen bg-[#050505] text-[#33ff33] font-mono p-4 flex flex-col pt-24 overflow-hidden">
@@ -80,32 +117,45 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
         {/* Left Column - Hero Dashboard */}
         <div className="col-span-1 lg:col-span-1 flex flex-col gap-4">
           
-          {/* Upcoming Auction Ticker */}
-          {nextUpcoming ? (
-            <div className="border border-[#00ffff]/60 bg-[#00ffff]/10 p-3 shadow-[0_0_10px_rgba(0,255,255,0.1)] flex flex-col">
-              <div className="text-[#00ffff] text-[10px] uppercase tracking-widest border-b border-[#00ffff]/30 pb-1 mb-2 flex justify-between">
-                <span>Next Upcoming Auction</span>
-                <span>{nextUpcoming.rawDate.toLocaleDateString()}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="font-bold text-white text-base sm:text-lg">{nextUpcoming.type}</span>
-                <span className="text-[#00ffff] font-bold">{nextUpcoming.size}</span>
-              </div>
+          {/* Upcoming Auctions Ticker */}
+          <div className="border border-[#00ffff]/60 bg-[#00ffff]/10 p-3 shadow-[0_0_10px_rgba(0,255,255,0.1)] flex flex-col max-h-[160px] overflow-y-auto scrollbar-hide">
+            <div className="text-[#00ffff] text-[10px] uppercase tracking-widest border-b border-[#00ffff]/30 pb-1 mb-2 sticky top-0 bg-[#061a1a] z-10">
+              Upcoming Auctions
             </div>
-          ) : (
-             <div className="border border-[#00ffff]/30 bg-black/60 p-3 flex justify-between items-center text-[10px] text-[#00ffff]/50 uppercase tracking-widest">
-               <span>Next Upcoming Auction</span>
-               <span>No Data</span>
-             </div>
-          )}
+            {upcomingAuctions.length > 0 ? (
+              <div className="flex flex-col gap-2">
+                {upcomingAuctions.map((ua: any) => (
+                  <div key={ua.id} className="flex justify-between items-center text-sm border-b border-[#00ffff]/10 pb-1">
+                    <div>
+                      <span className="font-bold text-white mr-2">{ua.type.replace('-Week', '-Wk').replace('-Year', '-Yr').replace('-Month', '-Mo')}</span>
+                      <span className="text-[#00ffff]">{ua.size.replace('.0B', 'B')}</span>
+                    </div>
+                    <span className="text-[#00ffff]/70 text-[10px]">{ua.rawDate.toLocaleDateString(undefined, {month: 'numeric', day: 'numeric'})}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-[10px] text-[#00ffff]/50 uppercase text-center mt-2">No Future Auctions</div>
+            )}
+          </div>
 
           <div className="border border-[#ffaa00]/60 bg-black/60 p-4 shadow-[0_0_15px_rgba(255,170,0,0.1)]">
-            <h2 className="text-[#ffaa00] text-sm uppercase tracking-widest border-b border-[#ffaa00]/30 pb-1 mb-4 flex justify-between">
-              <span>Most Recent Completed</span>
-              <span className="text-white text-xs">{latestCompleted?.rawDate.toLocaleDateString()}</span>
-            </h2>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#ffaa00]/30 pb-1 mb-4 gap-2">
+              <h2 className="text-[#ffaa00] text-xs sm:text-sm uppercase tracking-widest">
+                Most Recent Completed
+              </h2>
+              <div className="flex flex-wrap gap-1 text-[8px] sm:text-[10px]">
+                <button onClick={() => setHeroFilter('ALL')} className={`px-2 py-1 font-bold transition-colors ${heroFilter === 'ALL' ? 'bg-[#ffaa00] text-black' : 'border border-[#ffaa00] text-[#ffaa00] hover:bg-[#ffaa00]/20'}`}>ALL</button>
+                <button onClick={() => setHeroFilter('BILLS')} className={`px-2 py-1 font-bold transition-colors ${heroFilter === 'BILLS' ? 'bg-[#ffaa00] text-black' : 'border border-[#ffaa00] text-[#ffaa00] hover:bg-[#ffaa00]/20'}`}>BILLS</button>
+                <button onClick={() => setHeroFilter('NOTES')} className={`px-2 py-1 font-bold transition-colors ${heroFilter === 'NOTES' ? 'bg-[#ffaa00] text-black' : 'border border-[#ffaa00] text-[#ffaa00] hover:bg-[#ffaa00]/20'}`}>NOTES</button>
+                <button onClick={() => setHeroFilter('BONDS')} className={`px-2 py-1 font-bold transition-colors ${heroFilter === 'BONDS' ? 'bg-[#ffaa00] text-black' : 'border border-[#ffaa00] text-[#ffaa00] hover:bg-[#ffaa00]/20'}`}>BONDS</button>
+              </div>
+            </div>
             <div className="text-4xl sm:text-5xl font-bold text-white mb-2">{latestCompleted?.type || 'No Data'}</div>
-            <div className="text-xl text-[#00ffff] mb-6">SIZE: {latestCompleted?.size || 'N/A'}</div>
+            <div className="flex justify-between items-center mb-6">
+              <span className="text-xl text-[#00ffff]">SIZE: {latestCompleted?.size || 'N/A'}</span>
+              <span className="text-[#888] text-xs">{latestCompleted?.rawDate.toLocaleDateString()}</span>
+            </div>
             
             <div className="grid grid-cols-2 gap-4">
               <div className="border border-[#33ff33]/30 p-2 bg-[#111]">
