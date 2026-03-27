@@ -81,7 +81,7 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
   now.setHours(0, 0, 0, 0);
 
   // Historical tape should only include completed auctions
-  const historicalTape = filteredData.filter((a: any) => a.yield !== 'N/A' || a.rawDate < now);
+  const historicalTape = filteredData.filter((a: any) => a.yield !== 'N/A' && a.rawDate < now);
 
   // Hero filter logic (separate from tape filter)
   const completedAuctions = parsedData.filter((a: any) => a.yield !== 'N/A');
