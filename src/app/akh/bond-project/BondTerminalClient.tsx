@@ -216,7 +216,7 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
                 </tr>
               </thead>
               <tbody className="text-[#eee]">
-                {filteredData.slice(0, 50).map((auction: any) => (
+                {historicalTape.slice(0, 50).map((auction: any) => (
                   <tr key={auction.id} className="border-b border-[#33ff33]/10 hover:bg-[#33ff33]/10 cursor-pointer transition-colors group">
                     <td className="py-2 sm:py-3 pr-1 text-[#888] whitespace-nowrap">{auction.rawDate.toLocaleDateString(undefined, {month: 'numeric', day: 'numeric'})}</td>
                     <td className="py-2 sm:py-3 pl-1 sm:px-2 text-[#ffaa00] group-hover:text-white whitespace-nowrap max-w-[80px] sm:max-w-none truncate">{auction.type.replace('-Week', '-Wk').replace('-Year', '-Yr').replace('-Month', '-Mo')}</td>
@@ -231,7 +231,7 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
             </table>
           </div>
           <div className="mt-4 text-[10px] text-[#555] italic text-right border-t border-[#33ff33]/20 pt-2">
-            Showing latest {Math.min(filteredData.length, 50)} prints. Filter to isolate tenors.
+            Showing latest {Math.min(historicalTape.length, 50)} prints. Filter to isolate tenors.
           </div>
         </div>
 
