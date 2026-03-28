@@ -2,6 +2,13 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useBondEducation } from '@/hooks/useBondEducation';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 // Format currency
 const formatMoney = (amount: string) => {
@@ -30,6 +37,7 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
   const [filter, setFilter] = useState('ALL');
   const [heroFilter, setHeroFilter] = useState('ALL');
   const [menuOpen, setMenuOpen] = useState(false);
+  const { getDefinition } = useBondEducation();
 
   // Parse the raw Treasury API data into our clean mock format
   const parsedData = initialData.map((raw: any, index: number) => {
@@ -101,14 +109,20 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
     .sort((a: any, b: any) => a.rawDate.getTime() - b.rawDate.getTime());
 
   return (
+    <TooltipProvider>
     <div className="min-h-screen bg-[#050505] text-[#33ff33] font-mono p-4 flex flex-col pt-24 overflow-hidden">
       {/* Header */}
       <div className="border-b border-[#33ff33]/40 pb-2 mb-6 flex justify-between items-end px-2">
         <h1 className="text-3xl font-bold tracking-tight text-[#ffaa00] drop-shadow-[0_0_8px_rgba(255,170,0,0.6)]">
           PER-HEDJ TERMINAL
         </h1>
-        <div className="text-xs text-[#00ffff] uppercase font-bold tracking-wider hidden sm:block">
-          MARKET PLUMBING | YTD AUCTIONS: {initialData.length}
+        <div className="flex items-center gap-4">
+          <Link href="/akh/per-ankh" className="text-[10px] text-[#d600ff] uppercase font-bold tracking-wider hover:underline flex items-center gap-1 border border-[#d600ff]/30 px-2 py-1 bg-[#d600ff]/10">
+            KNOWLEDGE_BASE (PER-ANKH)
+          </Link>
+          <div className="text-xs text-[#00ffff] uppercase font-bold tracking-wider hidden sm:block">
+            MARKET PLUMBING | YTD AUCTIONS: {initialData.length}
+          </div>
         </div>
       </div>
 
@@ -157,22 +171,61 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
               <span className="text-[#888] text-xs">{latestCompleted?.rawDate.toLocaleDateString()}</span>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               <div className="border border-[#33ff33]/30 p-2 bg-[#111]">
-                <div className="text-[10px] text-[#888] mb-1 uppercase truncate">Stop-Out Yield</div>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="text-[10px] text-[#888] mb-1 uppercase truncate cursor-help border-b border-dotted border-[#888]">Stop-Out Yield</div>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-black text-[#33ff33] border-[#33ff33] max-w-[200px]">
+                    {getDefinition('Stop-Out Yield')}
+                  </TooltipContent>
+                </Tooltip>
                 <div className="text-xl sm:text-2xl text-[#33ff33]">{latestCompleted?.yield}</div>
               </div>
               <div className="border border-[#ff3333]/40 p-2 bg-[#111]">
-                <div className="text-[10px] text-[#888] mb-1 uppercase truncate">Spread / Tail</div>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="text-[10px] text-[#888] mb-1 uppercase truncate cursor-help border-b border-dotted border-[#888]">Spread / Tail</div>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-black text-[#ff3333] border-[#ff3333] max-w-[200px]">
+                    {getDefinition('Spread / Tail')}
+                  </TooltipContent>
+                </Tooltip>
                 <div className="text-xl sm:text-2xl text-[#ff3333]">{latestCompleted?.tail}</div>
               </div>
               <div className="border border-[#00ffff]/30 p-2 bg-[#111]">
-                <div className="text-[10px] text-[#888] mb-1 uppercase truncate">Bid-to-Cover</div>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="text-[10px] text-[#888] mb-1 uppercase truncate cursor-help border-b border-dotted border-[#888]">Bid-to-Cover</div>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-black text-[#00ffff] border-[#00ffff] max-w-[200px]">
+                    {getDefinition('Bid-to-Cover')}
+                  </TooltipContent>
+                </Tooltip>
                 <div className="text-xl sm:text-2xl text-[#00ffff]">{latestCompleted?.btc}</div>
               </div>
               <div className="border border-[#ffaa00]/30 p-2 bg-[#111]">
-                <div className="text-[10px] text-[#888] mb-1 uppercase truncate">Dealer Takedown</div>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="text-[10px] text-[#888] mb-1 uppercase truncate cursor-help border-b border-dotted border-[#888]">Primary Dealer Takedown</div>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-black text-[#ffaa00] border-[#ffaa00] max-w-[200px]">
+                    {getDefinition('Primary Dealer Takedown')}
+                  </TooltipContent>
+                </Tooltip>
                 <div className="text-xl sm:text-2xl text-[#ffaa00]">{latestCompleted?.primary}</div>
+              </div>
+              <div className="border border-[#d600ff]/30 p-2 bg-[#111]">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="text-[10px] text-[#888] mb-1 uppercase truncate cursor-help border-b border-dotted border-[#888]">Indirect Allotment</div>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-black text-[#d600ff] border-[#d600ff] max-w-[200px]">
+                    {getDefinition('Indirect Allotment')}
+                  </TooltipContent>
+                </Tooltip>
+                <div className="text-xl sm:text-2xl text-[#d600ff]">{latestCompleted?.indirect}</div>
               </div>
             </div>
           </div>
@@ -219,12 +272,66 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
                 {historicalTape.slice(0, 50).map((auction: any) => (
                   <tr key={auction.id} className="border-b border-[#33ff33]/10 hover:bg-[#33ff33]/10 cursor-pointer transition-colors group">
                     <td className="py-2 sm:py-3 pr-1 text-[#888] whitespace-nowrap">{auction.rawDate.toLocaleDateString(undefined, {month: 'numeric', day: 'numeric'})}</td>
-                    <td className="py-2 sm:py-3 pl-1 sm:px-2 text-[#ffaa00] group-hover:text-white whitespace-nowrap max-w-[80px] sm:max-w-none truncate">{auction.type.replace('-Week', '-Wk').replace('-Year', '-Yr').replace('-Month', '-Mo')}</td>
-                    <td className="py-2 sm:py-3 whitespace-nowrap">{auction.size.replace('.0B', 'B')}</td>
-                    <td className="py-2 sm:py-3 text-[#33ff33] whitespace-nowrap pl-1">{auction.yield}</td>
-                    <td className="py-2 sm:py-3 text-[#00ffff] whitespace-nowrap pl-1">{auction.btc}</td>
-                    <td className="py-2 sm:py-3 hidden sm:table-cell pl-1">{auction.primary}</td>
-                    <td className="py-2 sm:py-3 hidden sm:table-cell pl-1">{auction.indirect}</td>
+                    <td className="py-2 sm:py-3 pl-1 sm:px-2 text-[#ffaa00] group-hover:text-white whitespace-nowrap max-w-[80px] sm:max-w-none truncate">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <span className="cursor-help">{auction.type.replace('-Week', '-Wk').replace('-Year', '-Yr').replace('-Month', '-Mo')}</span>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-black text-[#ffaa00] border-[#ffaa00]">
+                          {auction.type.includes('Bill') ? getDefinition('T-Bill') : (auction.type.includes('Note') ? getDefinition('Note') : (auction.type.includes('Bond') ? getDefinition('Bond') : auction.type))}
+                        </TooltipContent>
+                      </Tooltip>
+                    </td>
+                    <td className="py-2 sm:py-3 whitespace-nowrap">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <span className="cursor-help">{auction.size.replace('.0B', 'B')}</span>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-black text-[#33ff33] border-[#33ff33]">
+                          The total par amount of securities allotted to all successful bidders in the auction.
+                        </TooltipContent>
+                      </Tooltip>
+                    </td>
+                    <td className="py-2 sm:py-3 text-[#33ff33] whitespace-nowrap pl-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <span className="cursor-help">{auction.yield}</span>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-black text-[#33ff33] border-[#33ff33]">
+                          {getDefinition('Stop-Out Yield')}
+                        </TooltipContent>
+                      </Tooltip>
+                    </td>
+                    <td className="py-2 sm:py-3 text-[#00ffff] whitespace-nowrap pl-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <span className="cursor-help">{auction.btc}</span>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-black text-[#00ffff] border-[#00ffff]">
+                          {getDefinition('Bid-to-Cover')}
+                        </TooltipContent>
+                      </Tooltip>
+                    </td>
+                    <td className="py-2 sm:py-3 hidden sm:table-cell pl-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <span className="cursor-help">{auction.primary}</span>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-black text-[#ffaa00] border-[#ffaa00]">
+                          {getDefinition('Primary Dealer Takedown')}
+                        </TooltipContent>
+                      </Tooltip>
+                    </td>
+                    <td className="py-2 sm:py-3 hidden sm:table-cell pl-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <span className="cursor-help">{auction.indirect}</span>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-black text-[#d600ff] border-[#d600ff]">
+                          {getDefinition('Indirect Allotment')}
+                        </TooltipContent>
+                      </Tooltip>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -237,5 +344,6 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
 
       </div>
     </div>
+    </TooltipProvider>
   );
 }

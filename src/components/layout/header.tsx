@@ -31,7 +31,8 @@ const navItems = [
     label: 'Project Akh',
     children: [
       { href: '/akh', label: 'Dashboard' },
-      { href: '/akh/bond-project', label: 'The Bond Project (Per-hedj)' },
+      { href: '/akh/bond-project', label: 'Per-hedj (Data)' },
+      { href: '/akh/per-ankh', label: 'Per-ankh (Education)' },
     ],
   },
   { href: '/#faq', label: 'FAQ' },

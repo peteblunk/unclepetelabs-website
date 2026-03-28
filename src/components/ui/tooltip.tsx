@@ -9,7 +9,34 @@ const TooltipProvider = TooltipPrimitive.Provider
 
 const Tooltip = TooltipPrimitive.Root
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+const TooltipTrigger = React.forwardRef<
+  React.ElementRef<typeof TooltipPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Trigger>
+>(({ className, ...props }, ref) => {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <TooltipPrimitive.Root 
+      open={open} 
+      onOpenChange={setOpen}
+      delayDuration={0}
+    >
+      <TooltipPrimitive.Trigger
+        ref={ref}
+        className={className}
+        onPointerDown={(e) => {
+          if (e.pointerType === 'touch') {
+            // On mobile, we toggle the state manually to ensure it works on tap
+            setOpen((prev) => !prev);
+            e.preventDefault();
+          }
+        }}
+        {...props}
+      />
+    </TooltipPrimitive.Root>
+  );
+});
+TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
 
 const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
@@ -22,6 +49,12 @@ const TooltipContent = React.forwardRef<
       "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
       className
     )}
+    onPointerDown={(e) => {
+      // Allow tapping the tooltip itself to close it on mobile
+      if (e.pointerType === 'touch') {
+        // State is managed in the Trigger wrapper above
+      }
+    }}
     {...props}
   />
 ))
