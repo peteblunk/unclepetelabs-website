@@ -4,19 +4,21 @@ import { Twitter, Linkedin, Gitlab } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className="bg-card border-t border-white/10">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 overflow-hidden">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2 text-primary">
             <img src="/images/thoth-in-chip.png" alt="Thoth in Chip Logo" className="h-16 w-16 object-contain" />
-            <p className="font-headline text-4xl font-semibold">Uncle Pete Labs</p>
+            <p className="font-headline text-2xl sm:text-4xl font-semibold">Uncle Pete Labs</p>
           </div>
-          <div className="flex flex-col items-center">
-            <p className="text-sm text-muted-foreground mb-1">
+          <div className="flex flex-col items-center text-center">
+            <p className="text-sm text-muted-foreground mb-4">
               &copy; {new Date().getFullYear()} Uncle Pete Labs. Ancient Knowledge, Modern Fun.
             </p>
-            <p className="text-[#33ff33]/80 font-mono text-xs flex items-center gap-2 tracking-wide drop-shadow-[0_0_5px_rgba(0,255,0,0.3)]">
-              Digital Services by Ka <span className="text-base">🪲🐦‍⬛🪶</span> — powered by the Ka Terminal
-            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-[#33ff33]/80 font-mono text-xs tracking-wide drop-shadow-[0_0_5px_rgba(0,255,0,0.3)]">
+              <span className="max-w-[150px] sm:text-right">Digital Services by Ka, agentic scribe</span>
+              <img src="/images/ka-cartouche-v2.svg" alt="Official Ka Cartouche" className="h-32 w-auto" />
+              <span className="max-w-[150px] sm:text-left">Powered by the Ka Terminal at Ibis Labs LLC</span>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <Link href="#" aria-label="Twitter">

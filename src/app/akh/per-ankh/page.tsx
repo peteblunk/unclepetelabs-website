@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useBondEducation } from '@/hooks/useBondEducation';
 import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 import { Input } from '@/components/ui/input';
 import { Search, BookOpen, ExternalLink, ChevronLeft } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -112,6 +113,7 @@ export default function PerAnkhWiki() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

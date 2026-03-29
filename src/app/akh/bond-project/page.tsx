@@ -1,5 +1,6 @@
 import BondTerminalClient from './BondTerminalClient';
 import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 
 async function getAuctions() {
   // Fetch YTD auctions and cache for 1 hour (3600 seconds)
@@ -19,6 +20,7 @@ export default async function BondProjectPage() {
     <>
       <Header />
       <BondTerminalClient initialData={payload.data} />
+      <Footer />
     </>
   );
 }

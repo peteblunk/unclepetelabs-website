@@ -1,0 +1,6 @@
+<svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
+  <rect style="fill:#050505; stroke:#d600ff; stroke-width:4" width="140" height="260" x="35" y="18.5" ry="70" />
+  <text x="105" y="150" text-anchor="middle" style="font-weight:bold; font-size:48px; font-family:Orbitron, sans-serif; fill:#00ff41">KA</text>
+  <path d="M 105,60 L 105,90 M 105,210 L 105,240" style="stroke:#00ffff; stroke-width:2; opacity:0.5" />
+  <circle cx="105" cy="270" r="10" style="fill:#d600ff" />
+</svg>
