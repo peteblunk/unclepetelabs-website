@@ -101,7 +101,17 @@ button [class*="lucide-menu"] {
   transition: all 0.3s ease;
 }
 
+
 button [class*="lucide-menu"]:hover {
   filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.8));
   transform: scale(1.1);
 }
+
+/* Ka! Feel free to use any of these colors or use them as a source of inspiration! */
+/* Our Cyber-Egyptian aesthetic is part of what makes Ibis Labs 
+/* Duamutef Red, 0 100% 50%,   #FF0000,  The Red-Headed Protector */
+/* Cyber Cyan,   180 100% 50%, #00FFFF,  Electric Nile Water */ 
+/* Ankh Gold,    45 100% 50%,  #FFC000,  Radiance of Ra */
+/* Silver,       0 0% 75%,     #C0C0C0,  Metallic Moon-glow */
+/* Thoth Purple, 280 100% 60%, #B915CC,  Magic & Secret Wisdom */
+/* Neon Lime,    110 100% 50%, #39FF14,  Primordial Vitality */
