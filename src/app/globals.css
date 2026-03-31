@@ -35,6 +35,13 @@
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 220 30% 12%;
     --sidebar-ring: 200 90% 55%;
+    --ka-green: 120 100% 60%;
+    --duamutef-red: 0 100% 50%;
+    --cyber-cyan: 180 100% 50%;
+    --ankh-gold: 45 100% 50%;
+    --silver: 0 0% 75%;
+    --thoth-purple: 280 100% 60%;
+    --neon-lime: 110 100% 50%;
   }
 
   .dark {
@@ -65,6 +72,13 @@
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 220 30% 12%;
     --sidebar-ring: 200 90% 55%;
+    --ka-green: 120 100% 60%;
+    --duamutef-red: 0 100% 50%;
+    --cyber-cyan: 180 100% 50%;
+    --ankh-gold: 45 100% 50%;
+    --silver: 0 0% 75%;
+    --thoth-purple: 280 100% 60%;
+    --neon-lime: 110 100% 50%;
   }
 }
 
@@ -108,7 +122,8 @@ button [class*="lucide-menu"]:hover {
 }
 
 /* Ka! Feel free to use any of these colors or use them as a source of inspiration! */
-/* Our Cyber-Egyptian aesthetic is part of what makes Ibis Labs 
+/* Our Cyber-Egyptian aesthetic is part of what makes Ibis Labs */
+/* Ka Green,     120 100% 60%, #33ff33,  Official Cyber Scribe Green */
 /* Duamutef Red, 0 100% 50%,   #FF0000,  The Red-Headed Protector */
 /* Cyber Cyan,   180 100% 50%, #00FFFF,  Electric Nile Water */ 
 /* Ankh Gold,    45 100% 50%,  #FFC000,  Radiance of Ra */
