@@ -9,71 +9,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { parseTreasuryData, TreasuryAuctionRecord } from '@/lib/akh/bond-engine';
 
-// Format currency
-const formatMoney = (amount: string) => {
-  if (!amount || amount === 'null') return 'N/A';
-  const num = parseFloat(amount);
-  if (num >= 1e9) return `$${(num / 1e9).toFixed(1)}B`;
-  if (num >= 1e6) return `$${(num / 1e6).toFixed(1)}M`;
-  return `$${num.toLocaleString()}`;
-};
-
-// Calculate Allotment Percentage safely
-const calculateAllotment = (accepted: string, total: string) => {
-  if (!accepted || !total || accepted === 'null' || total === 'null') return 'N/A';
-  return ((parseFloat(accepted) / parseFloat(total)) * 100).toFixed(1) + '%';
-};
-
-// Calculate proxy tail (High - Low yield if WI isn't in this specific dataset)
-const calculateTail = (high: string, low: string) => {
-  if (!high || !low || high === 'null' || low === 'null') return 'N/A';
-  const diff = (parseFloat(high) - parseFloat(low)) * 100; // basis points
-  if (diff === 0) return '0.0bps';
-  return diff > 0 ? `+${diff.toFixed(1)}bps` : `${diff.toFixed(1)}bps`;
-};
-
-export default function BondTerminalClient({ initialData }: { initialData: any[] }) {
+export default function BondTerminalClient({ initialData }: { initialData: TreasuryAuctionRecord[] }) {
   const [filter, setFilter] = useState('ALL');
   const [heroFilter, setHeroFilter] = useState('ALL');
-  const [menuOpen, setMenuOpen] = useState(false);
   const { getDefinition } = useBondEducation();
 
-  // Parse the raw Treasury API data into our clean mock format
-  const parsedData = initialData.map((raw: any, index: number) => {
-    // Determine the true yield (Bills use investment rate or discount rate)
-    let finalYield = 'N/A';
-    if (raw.high_yield !== 'null') {
-      finalYield = `${parseFloat(raw.high_yield).toFixed(3)}%`;
-    } else if (raw.high_investment_rate !== 'null') {
-      finalYield = `${parseFloat(raw.high_investment_rate).toFixed(3)}%`;
-    } else if (raw.high_discnt_rate !== 'null') {
-      finalYield = `${parseFloat(raw.high_discnt_rate).toFixed(3)}%`;
-    }
-
-    // Proxy tail calculation depending on instrument
-    let finalTail = 'N/A';
-    if (raw.high_yield !== 'null' && raw.low_yield !== 'null') {
-      finalTail = calculateTail(raw.high_yield, raw.low_yield);
-    } else if (raw.high_investment_rate !== 'null' && raw.low_investment_rate !== 'null') {
-      finalTail = calculateTail(raw.high_investment_rate, raw.low_investment_rate);
-    } else if (raw.high_discnt_rate !== 'null' && raw.low_discnt_rate !== 'null') {
-      finalTail = calculateTail(raw.high_discnt_rate, raw.low_discnt_rate);
-    }
-
-    return {
-      id: `${raw.cusip || 'unknown'}-${index}`,
-      type: raw.security_type === 'Bill' ? `${raw.security_term} T-Bill` : `${raw.security_term} ${raw.security_type}`,
-      size: formatMoney(raw.offering_amt),
-      yield: finalYield,
-      tail: finalTail,
-      btc: raw.bid_to_cover_ratio !== 'null' ? parseFloat(raw.bid_to_cover_ratio).toFixed(2) : 'N/A',
-      primary: calculateAllotment(raw.primary_dealer_accepted, raw.total_accepted),
-      direct: calculateAllotment(raw.direct_bidder_accepted, raw.total_accepted),
-      indirect: calculateAllotment(raw.indirect_bidder_accepted, raw.total_accepted),
-      rawDate: new Date(raw.auction_date),
-    };
-  });
+  // Rule of Ptah (Part VI): Logic separated into src/lib/akh/bond-engine.ts
+  const parsedData = parseTreasuryData(initialData);
 
   // Apply quick filters for the tape
   const filteredData = parsedData.filter((item: any) => {
