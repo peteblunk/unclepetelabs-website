@@ -42,6 +42,7 @@
     --silver: 0 0% 75%;
     --thoth-purple: 280 100% 60%;
     --neon-lime: 110 100% 50%;
+    --ka-green: 120 100% 60%;
   }
 
   .dark {
@@ -79,6 +80,7 @@
     --silver: 0 0% 75%;
     --thoth-purple: 280 100% 60%;
     --neon-lime: 110 100% 50%;
+    --ka-green: 120 100% 60%;
   }
 }
 
@@ -130,3 +132,4 @@ button [class*="lucide-menu"]:hover {
 /* Silver,       0 0% 75%,     #C0C0C0,  Metallic Moon-glow */
 /* Thoth Purple, 280 100% 60%, #B915CC,  Magic & Secret Wisdom */
 /* Neon Lime,    110 100% 50%, #39FF14,  Primordial Vitality */
+/* Ka Green,     120 100% 60%, #33ff33,  Official Cyber Scribe Green */
