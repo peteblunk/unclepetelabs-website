@@ -10,15 +10,11 @@ import { Search, BookOpen, ExternalLink, ChevronLeft } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function PerAnkhWiki() {
-  const { getAllTerms } = useBondEducation();
+  const { getAllTerms, filterTerms } = useBondEducation();
   const [search, setSearch] = useState('');
   
   const allTerms = getAllTerms();
-  
-  const filteredTerms = allTerms.filter(t => 
-    t.name.toLowerCase().includes(search.toLowerCase()) || 
-    t.definition.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredTerms = filterTerms(search);
 
   return (
     <div className="min-h-screen bg-black text-[#00ff41] font-mono flex flex-col pt-24">

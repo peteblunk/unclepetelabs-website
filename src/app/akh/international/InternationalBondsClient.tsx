@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
   LineChart, 
@@ -13,28 +13,15 @@ import {
   Legend
 } from 'recharts';
 import { Globe, TrendingUp, RefreshCw } from 'lucide-react';
-
-interface ExchangeRate {
-  country_currency_desc: string;
-  exchange_rate: string;
-  record_date: string;
-}
+import { ExchangeRate } from '@/lib/akh/types';
+import { formatExchangeRatesForChart, getUniqueCurrencies } from '@/lib/akh/international-engine';
 
 export default function InternationalBondsClient({ initialData }: { initialData: ExchangeRate[] }) {
   const [data] = useState(initialData);
 
-  // Group data by currency for the chart
-  const currencies = Array.from(new Set(data.map(d => d.country_currency_desc)));
-  
-  // Format data for Recharts: array of { date: string, [currency]: rate }
-  const dates = Array.from(new Set(data.map(d => d.record_date))).sort();
-  const chartData = dates.map(date => {
-    const point: any = { date: new Date(date).toLocaleDateString(undefined, { month: 'short', year: '2-digit' }) };
-    data.filter(d => d.record_date === date).forEach(d => {
-      point[d.country_currency_desc] = parseFloat(d.exchange_rate);
-    });
-    return point;
-  });
+  // Use the separated logic engines, memoized for stability
+  const currencies = useMemo(() => getUniqueCurrencies(data), [data]);
+  const chartData = useMemo(() => formatExchangeRatesForChart(data), [data]);
 
   const colors = ['#33ff33', '#00ffff', '#ffaa00', '#d600ff', '#ff3333'];
 
