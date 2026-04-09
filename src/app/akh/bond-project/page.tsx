@@ -1,8 +1,9 @@
 import BondTerminalClient from './BondTerminalClient';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import { TreasuryAuctionRecord } from '@/lib/akh/bond-engine';
 
-async function getAuctions() {
+async function getAuctions(): Promise<{ data: TreasuryAuctionRecord[] }> {
   // Fetch YTD auctions and cache for 1 hour (3600 seconds)
   const url = 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?filter=auction_date:gte:2026-01-01&page[size]=1000&sort=-auction_date';
   const res = await fetch(url, { next: { revalidate: 3600 } });

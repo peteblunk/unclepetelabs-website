@@ -9,15 +9,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { parseTreasuryData } from '@/lib/akh/bond-engine';
+import { parseTreasuryData, TreasuryAuctionRecord } from '@/lib/akh/bond-engine';
+import { BondGraphs } from '@/components/akh/bond-graphs';
 
-export default function BondTerminalClient({ initialData }: { initialData: any[] }) {
+export default function BondTerminalClient({ initialData }: { initialData: TreasuryAuctionRecord[] }) {
   const [filter, setFilter] = useState('ALL');
   const [heroFilter, setHeroFilter] = useState('ALL');
-  const [menuOpen, setMenuOpen] = useState(false);
   const { getDefinition } = useBondEducation();
 
-  // Use the shared Ptah-compliant engine for parsing
+  // Rule of Ptah (Part VI): Logic separated into src/lib/akh/bond-engine.ts
   const parsedData = parseTreasuryData(initialData);
 
   // Apply quick filters for the tape
@@ -189,15 +189,8 @@ export default function BondTerminalClient({ initialData }: { initialData: any[]
           </div>
           
           <div className="border border-[#33ff33]/40 bg-black/60 p-4 flex-1">
-             <h2 className="text-[#33ff33] text-sm uppercase tracking-widest border-b border-[#33ff33]/30 pb-1 mb-4">Signal Analysis</h2>
-             <p className="text-xs text-[#aaa] leading-relaxed">
-               &gt; <span className="text-[#33ff33]">LIVE FEED ESTABLISHED:</span> Connected to Fiscal Data Vault.
-               <br/><br/>
-               &gt; The {latestCompleted?.type} cleared at {latestCompleted?.yield} with a bid-to-cover of {latestCompleted?.btc}. 
-               Primary Dealer allotment printed at {latestCompleted?.primary}. 
-               <br/><br/>
-               &gt; ALGO RECOMMENDATION: Compare {latestCompleted?.primary} dealer takedown against historical 6-month moving average to confirm true structural demand.
-             </p>
+             <h2 className="text-[#33ff33] text-sm uppercase tracking-widest border-b border-[#33ff33]/30 pb-1 mb-4">Signal Analysis (Visual)</h2>
+             <BondGraphs data={parsedData} />
           </div>
         </div>
 
