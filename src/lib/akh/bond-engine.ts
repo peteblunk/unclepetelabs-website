@@ -85,3 +85,25 @@ export const parseTreasuryData = (data: TreasuryAuctionRecord[]): ParsedAuction[
     };
   });
 };
+
+/**
+ * Ptah Protocol (Part VI): Logic for preparing graph data
+ */
+export const prepareGraphData = (data: ParsedAuction[]) => {
+  const completed = data.filter(a => a.yield !== 'N/A');
+  
+  // Group by date to handle multiple auctions on the same day
+  const groupedByDate = completed.reduce((acc: any, curr) => {
+    const dateStr = curr.rawDate.toISOString().split('T')[0];
+    if (!acc[dateStr]) acc[dateStr] = { date: dateStr };
+    
+    // We'll use a simplified key for the graph (e.g., '4-Wk', '10-Yr')
+    const key = curr.type.split(' ')[0]; 
+    acc[dateStr][key] = parseFloat(curr.yield);
+    return acc;
+  }, {});
+
+  return Object.values(groupedByDate).sort((a: any, b: any) => 
+    new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+};
