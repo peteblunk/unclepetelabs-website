@@ -11,17 +11,11 @@ import {
   ResponsiveContainer,
   Legend
 } from 'recharts';
-import { ParsedAuction, prepareGraphData } from '@/lib/akh/bond-engine';
+import { ParsedAuction, prepareGraphData, getUniqueSecurityTypes } from '@/lib/akh/bond-engine';
 
 export function BondGraphs({ data }: { data: ParsedAuction[] }) {
   const graphData = prepareGraphData(data);
-
-  // Get all unique security types for lines
-  const keys = Array.from(
-    new Set(
-      data.filter(a => a.yield !== 'N/A').map(a => a.type.split(' ')[0])
-    )
-  );
+  const keys = getUniqueSecurityTypes(data);
 
   const colors = [
     '#33ff33', // Neon Green

@@ -107,3 +107,58 @@ export const prepareGraphData = (data: ParsedAuction[]) => {
     new Date(a.date).getTime() - new Date(b.date).getTime()
   );
 };
+
+/**
+ * Ptah Protocol (Part VI): Extract unique security types for graph legends
+ */
+export const getUniqueSecurityTypes = (data: ParsedAuction[]) => {
+  return Array.from(
+    new Set(
+      data.filter(a => a.yield !== 'N/A').map(a => a.type.split(' ')[0])
+    )
+  );
+};
+
+/**
+ * Ptah Protocol (Part VI): Logic for filtering Treasury data
+ */
+export const filterAuctions = (data: ParsedAuction[], filter: string) => {
+  if (filter === 'ALL') return data;
+  const lowerFilter = filter.toLowerCase();
+  return data.filter((item: any) => {
+    const typeStr = item.type.toLowerCase();
+    if (lowerFilter === 'bills') return typeStr.includes('bill') || typeStr.includes('cmb');
+    if (lowerFilter === 'notes') return typeStr.includes('note');
+    if (lowerFilter === 'bonds') return typeStr.includes('bond') || typeStr.includes('tips');
+    return true;
+  });
+};
+
+/**
+ * Ptah Protocol (Part VI): Logic for identifying historical completed auctions
+ */
+export const getHistoricalTape = (data: ParsedAuction[]) => {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  return data.filter((a: any) => a.yield !== 'N/A' && a.rawDate < now);
+};
+
+/**
+ * Ptah Protocol (Part VI): Logic for identifying upcoming auctions
+ */
+export const getUpcomingAuctions = (data: ParsedAuction[]) => {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  return data
+    .filter((a: any) => a.yield === 'N/A' && a.rawDate >= now)
+    .sort((a: any, b: any) => a.rawDate.getTime() - b.rawDate.getTime());
+};
+
+/**
+ * Ptah Protocol (Part VI): Logic for getting the latest completed auction with filtering
+ */
+export const getLatestCompleted = (data: ParsedAuction[], filter: string) => {
+  const completed = data.filter((a: any) => a.yield !== 'N/A');
+  const filtered = filterAuctions(completed, filter);
+  return filtered[0] || null;
+};

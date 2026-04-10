@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { useBondEducation } from '@/hooks/useBondEducation';
 import {
@@ -9,7 +9,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { parseTreasuryData, TreasuryAuctionRecord } from '@/lib/akh/bond-engine';
+import { 
+  parseTreasuryData, 
+  TreasuryAuctionRecord,
+  filterAuctions,
+  getHistoricalTape,
+  getUpcomingAuctions,
+  getLatestCompleted
+} from '@/lib/akh/bond-engine';
 import { BondGraphs } from '@/components/akh/bond-graphs';
 
 export default function BondTerminalClient({ initialData }: { initialData: TreasuryAuctionRecord[] }) {
@@ -18,40 +25,20 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
   const { getDefinition } = useBondEducation();
 
   // Rule of Ptah (Part VI): Logic separated into src/lib/akh/bond-engine.ts
-  const parsedData = parseTreasuryData(initialData);
+  // Memoize data processing for performance and stability
+  const parsedData = useMemo(() => parseTreasuryData(initialData), [initialData]);
 
-  // Apply quick filters for the tape
-  const filteredData = parsedData.filter((item: any) => {
-    if (filter === 'ALL') return true;
-    const typeStr = item.type.toLowerCase();
-    if (filter === 'BILLS') return typeStr.includes('bill') || typeStr.includes('cmb');
-    if (filter === 'NOTES') return typeStr.includes('note');
-    if (filter === 'BONDS') return typeStr.includes('bond') || typeStr.includes('tips');
-    return true;
-  });
+  // Apply quick filters for the tape (Part VI separation)
+  const filteredData = useMemo(() => filterAuctions(parsedData, filter), [parsedData, filter]);
 
-  const now = new Date();
-  now.setHours(0, 0, 0, 0);
+  // Historical tape (Part VI separation)
+  const historicalTape = useMemo(() => getHistoricalTape(filteredData), [filteredData]);
 
-  // Historical tape should only include completed auctions
-  const historicalTape = filteredData.filter((a: any) => a.yield !== 'N/A' && a.rawDate < now);
+  // Hero filter logic (Part VI separation)
+  const latestCompleted = useMemo(() => getLatestCompleted(parsedData, heroFilter), [parsedData, heroFilter]);
 
-  // Hero filter logic (separate from tape filter)
-  const completedAuctions = parsedData.filter((a: any) => a.yield !== 'N/A');
-  const heroFiltered = completedAuctions.filter((item: any) => {
-    if (heroFilter === 'ALL') return true;
-    const typeStr = item.type.toLowerCase();
-    if (heroFilter === 'BILLS') return typeStr.includes('bill') || typeStr.includes('cmb');
-    if (heroFilter === 'NOTES') return typeStr.includes('note');
-    if (heroFilter === 'BONDS') return typeStr.includes('bond') || typeStr.includes('tips');
-    return true;
-  });
-  const latestCompleted = heroFiltered[0] || null;
-
-  // Upcoming auctions: Yield is N/A AND date is today or in the future
-  const upcomingAuctions = parsedData
-    .filter((a: any) => a.yield === 'N/A' && a.rawDate >= now)
-    .sort((a: any, b: any) => a.rawDate.getTime() - b.rawDate.getTime());
+  // Upcoming auctions (Part VI separation)
+  const upcomingAuctions = useMemo(() => getUpcomingAuctions(parsedData), [parsedData]);
 
   return (
     <TooltipProvider>
