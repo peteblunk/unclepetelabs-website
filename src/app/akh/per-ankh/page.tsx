@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { useBondEducation } from '@/hooks/useBondEducation';
 import Header from '@/components/layout/header';
@@ -8,17 +8,16 @@ import Footer from '@/components/layout/footer';
 import { Input } from '@/components/ui/input';
 import { Search, BookOpen, ExternalLink, ChevronLeft } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { filterWikiTerms } from '@/lib/akh/bond-engine';
 
 export default function PerAnkhWiki() {
   const { getAllTerms } = useBondEducation();
   const [search, setSearch] = useState('');
   
-  const allTerms = getAllTerms();
+  const allTerms = useMemo(() => getAllTerms(), [getAllTerms]);
   
-  const filteredTerms = allTerms.filter(t => 
-    t.name.toLowerCase().includes(search.toLowerCase()) || 
-    t.definition.toLowerCase().includes(search.toLowerCase())
-  );
+  // Rule of Ptah (Part VI): Logic separated into src/lib/akh/bond-engine.ts
+  const filteredTerms = useMemo(() => filterWikiTerms(allTerms, search), [allTerms, search]);
 
   return (
     <div className="min-h-screen bg-black text-[#00ff41] font-mono flex flex-col pt-24">

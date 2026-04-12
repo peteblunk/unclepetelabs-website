@@ -162,3 +162,40 @@ export const getLatestCompleted = (data: ParsedAuction[], filter: string) => {
   const filtered = filterAuctions(completed, filter);
   return filtered[0] || null;
 };
+
+/**
+ * Ptah Protocol (Part VI): Logic for preparing exchange rate chart data
+ * Separates formatting/grouping logic from the UI Body.
+ */
+export const prepareExchangeRateChartData = (data: any[]) => {
+  const dates = Array.from(new Set(data.map(d => d.record_date))).sort();
+  return dates.map(date => {
+    const point: any = { 
+      date: new Date(date).toLocaleDateString(undefined, { month: 'short', year: '2-digit' }) 
+    };
+    data.filter(d => d.record_date === date).forEach(d => {
+      point[d.country_currency_desc] = parseFloat(d.exchange_rate);
+    });
+    return point;
+  });
+};
+
+/**
+ * Ptah Protocol (Part VI): Extract unique currencies for legend identification
+ */
+export const getUniqueCurrencies = (data: any[]) => {
+  return Array.from(new Set(data.map(d => d.country_currency_desc)));
+};
+
+/**
+ * Ptah Protocol (Part VI): Logic for filtering Wiki terms
+ * Separates searching/filtering logic from the Per-Ankh Body.
+ */
+export const filterWikiTerms = (terms: any[], search: string) => {
+  if (!search) return terms;
+  const lowerSearch = search.toLowerCase();
+  return terms.filter(t => 
+    t.name.toLowerCase().includes(lowerSearch) || 
+    t.definition.toLowerCase().includes(lowerSearch)
+  );
+};

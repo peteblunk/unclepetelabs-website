@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
   LineChart, 
@@ -13,6 +13,7 @@ import {
   Legend
 } from 'recharts';
 import { Globe, TrendingUp, RefreshCw } from 'lucide-react';
+import { prepareExchangeRateChartData, getUniqueCurrencies } from '@/lib/akh/bond-engine';
 
 interface ExchangeRate {
   country_currency_desc: string;
@@ -21,20 +22,9 @@ interface ExchangeRate {
 }
 
 export default function InternationalBondsClient({ initialData }: { initialData: ExchangeRate[] }) {
-  const [data] = useState(initialData);
-
-  // Group data by currency for the chart
-  const currencies = Array.from(new Set(data.map(d => d.country_currency_desc)));
-  
-  // Format data for Recharts: array of { date: string, [currency]: rate }
-  const dates = Array.from(new Set(data.map(d => d.record_date))).sort();
-  const chartData = dates.map(date => {
-    const point: any = { date: new Date(date).toLocaleDateString(undefined, { month: 'short', year: '2-digit' }) };
-    data.filter(d => d.record_date === date).forEach(d => {
-      point[d.country_currency_desc] = parseFloat(d.exchange_rate);
-    });
-    return point;
-  });
+  // Rule of Ptah (Part VI): Logic separated into src/lib/akh/bond-engine.ts
+  const chartData = useMemo(() => prepareExchangeRateChartData(initialData), [initialData]);
+  const currencies = useMemo(() => getUniqueCurrencies(initialData), [initialData]);
 
   const colors = ['#33ff33', '#00ffff', '#ffaa00', '#d600ff', '#ff3333'];
 
