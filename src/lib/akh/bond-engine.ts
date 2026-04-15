@@ -188,6 +188,37 @@ export const getUniqueCurrencies = (data: any[]) => {
 };
 
 /**
+ * Ptah Protocol (Part VI): Logic for preparing international bond yield data
+ * Separates data transformation from the UI Body.
+ */
+export const prepareYieldChartData = (yields: any[], baseYield?: any[]) => {
+  const dates = Array.from(new Set(yields.map(y => y.date))).sort();
+  return dates.map(date => {
+    const point: any = { 
+      date: new Date(date).toLocaleDateString(undefined, { month: 'short', year: '2-digit' }),
+      rawDate: date
+    };
+    
+    yields.filter(y => y.date === date).forEach(y => {
+      point[y.country] = y.value;
+    });
+
+    if (baseYield) {
+      const base = baseYield.find(b => b.date === date);
+      if (base) {
+        point['US'] = base.value;
+        // Calculate spreads
+        yields.filter(y => y.date === date).forEach(y => {
+          point[`${y.country}_spread`] = parseFloat((y.value - base.value).toFixed(4));
+        });
+      }
+    }
+    
+    return point;
+  });
+};
+
+/**
  * Ptah Protocol (Part VI): Logic for filtering Wiki terms
  * Separates searching/filtering logic from the Per-Ankh Body.
  */

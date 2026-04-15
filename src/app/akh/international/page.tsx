@@ -16,12 +16,38 @@ async function getExchangeRates() {
   return res.json();
 }
 
+/**
+ * Ptah Protocol (Part VI): Data fetching logic
+ * Future: Use FRED API or similar for real-time bond yields.
+ */
+async function getBondYields() {
+  // Mock data for initial implementation
+  // UK, Germany, Japan, France 10Y yields from scraping
+  return [
+    { country: 'UK', value: 4.7240, date: '2026-04-14' },
+    { country: 'Germany', value: 3.0297, date: '2026-04-14' },
+    { country: 'Japan', value: 2.4050, date: '2026-04-14' },
+    { country: 'France', value: 3.6570, date: '2026-04-14' },
+    { country: 'US', value: 4.2550, date: '2026-04-14' },
+    { country: 'UK', value: 4.82, date: '2026-04-13' },
+    { country: 'Germany', value: 2.95, date: '2026-04-13' },
+    { country: 'Japan', value: 2.38, date: '2026-04-13' },
+    { country: 'France', value: 3.58, date: '2026-04-13' },
+    { country: 'US', value: 4.28, date: '2026-04-13' },
+  ];
+}
+
 export default async function InternationalPage() {
   const payload = await getExchangeRates();
+  const bondYields = await getBondYields();
+  
   return (
     <>
       <Header />
-      <InternationalBondsClient initialData={payload.data} />
+      <InternationalBondsClient 
+        initialData={payload.data} 
+        yieldData={bondYields}
+      />
       <Footer />
     </>
   );
