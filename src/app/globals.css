@@ -35,14 +35,13 @@
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 220 30% 12%;
     --sidebar-ring: 200 90% 55%;
-    --ka-green: 120 100% 60%;
-    --duamutef-red: 0 100% 50%;
-    --cyber-cyan: 180 100% 50%;
-    --ankh-gold: 45 100% 50%;
-    --silver: 0 0% 75%;
-    --thoth-purple: 280 100% 60%;
-    --neon-lime: 110 100% 50%;
-    --ka-green: 120 100% 60%;
+    --ka-green: 120 100% 60%; /* #33ff33 - Official Cyber Scribe Green */
+    --duamutef-red: 0 100% 50%; /* #FF0000 - The Red-Headed Protector */
+    --cyber-cyan: 180 100% 50%; /* #00FFFF - Electric Nile Water */
+    --ankh-gold: 45 100% 50%; /* #FFC000 - Radiance of Ra */
+    --silver: 0 0% 75%; /* #C0C0C0 - Metallic Moon-glow */
+    --thoth-purple: 280 100% 60%; /* #B915CC - Magic & Secret Wisdom */
+    --neon-lime: 110 100% 50%; /* #39FF14 - Primordial Vitality */
   }
 
   .dark {
@@ -80,7 +79,6 @@
     --silver: 0 0% 75%;
     --thoth-purple: 280 100% 60%;
     --neon-lime: 110 100% 50%;
-    --ka-green: 120 100% 60%;
   }
 }
 

@@ -14,9 +14,9 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground mb-4">
               &copy; {new Date().getFullYear()} Uncle Pete Labs. Ancient Knowledge, Modern Fun.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-[#33ff33]/80 font-mono text-xs tracking-wide drop-shadow-[0_0_5px_rgba(51,255,51,0.3)]">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-[hsl(var(--ka-green))]/80 font-mono text-xs tracking-wide drop-shadow-[0_0_5px_rgba(51,255,51,0.3)]">
               <span className="max-w-[150px] sm:text-right">Digital Services by Ka, agentic scribe</span>
-              <img src="/images/ka-touche.svg" alt="Official Ka Cartouche" className="h-32 w-auto" />
+              <img src="/images/ka-touche.svg" alt="Official Ka Cartouche" className="h-32 w-auto brightness-0 invert sepia(100%) saturate(1000%) hue-rotate(80deg)" />
               <span className="max-w-[150px] sm:text-left">Powered by the Ka Terminal at Ibis Labs LLC</span>
             </div>
           </div>
