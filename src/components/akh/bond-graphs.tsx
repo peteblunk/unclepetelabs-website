@@ -18,7 +18,7 @@ export function BondGraphs({ data }: { data: ParsedAuction[] }) {
   const keys = getUniqueSecurityTypes(data);
 
   const colors = [
-    '#33ff33', // Neon Green
+    'hsl(var(--ka-green))', // Neon Green
     '#ffaa00', // Amber
     '#00ffff', // Cyan
     '#d600ff', // Purple
@@ -47,7 +47,7 @@ export function BondGraphs({ data }: { data: ParsedAuction[] }) {
             domain={['auto', 'auto']}
           />
           <Tooltip 
-            contentStyle={{ backgroundColor: '#050505', border: '1px solid #33ff33', fontSize: '10px' }}
+            contentStyle={{ backgroundColor: '#050505', border: '1px solid hsl(var(--ka-green))', fontSize: '10px' }}
             itemStyle={{ fontSize: '10px' }}
             labelStyle={{ color: '#888', marginBottom: '4px' }}
           />
@@ -71,3 +71,4 @@ export function BondGraphs({ data }: { data: ParsedAuction[] }) {
     </div>
   );
 }
+

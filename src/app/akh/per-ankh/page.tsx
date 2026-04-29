@@ -47,8 +47,8 @@ export default function PerAnkhWiki() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar / Overview Section */}
           <div className="lg:col-span-1 space-y-6">
-            <div className="border border-[#33ff33]/30 p-4 bg-[#111]">
-              <h2 className="text-[#33ff33] text-sm uppercase mb-3 flex items-center gap-2">
+            <div className="border border-[hsl(var(--ka-green))]/30 p-4 bg-[#111]">
+              <h2 className="text-[hsl(var(--ka-green))] text-sm uppercase mb-3 flex items-center gap-2">
                 <BookOpen size={16} /> ABOUT_THE_AUCTIONS
               </h2>
               <p className="text-xs text-white/80 leading-relaxed mb-4">
@@ -77,9 +77,9 @@ export default function PerAnkhWiki() {
           <div className="lg:col-span-3 space-y-6">
             {/* Search Box */}
             <div className="relative group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#33ff33] group-focus-within:text-[#00ffff] transition-colors" size={18} />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[hsl(var(--ka-green))] group-focus-within:text-[#00ffff] transition-colors" size={18} />
               <Input 
-                className="bg-black border-[#33ff33]/40 focus:border-[#00ffff] text-[#33ff33] pl-10 h-12 text-lg rounded-none transition-all placeholder:text-[#33ff33]/30"
+                className="bg-black border-[hsl(var(--ka-green))]/40 focus:border-[#00ffff] text-[hsl(var(--ka-green))] pl-10 h-12 text-lg rounded-none transition-all placeholder:text-[hsl(var(--ka-green))]/30"
                 placeholder="SEARCH_THE_SCROLLS..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -90,7 +90,7 @@ export default function PerAnkhWiki() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredTerms.length > 0 ? (
                 filteredTerms.map((term) => (
-                  <Card key={term.name} className="bg-black border-[#33ff33]/20 rounded-none hover:border-[#00ffff]/60 transition-all group">
+                  <Card key={term.name} className="bg-black border-[hsl(var(--ka-green))]/20 rounded-none hover:border-[#00ffff]/60 transition-all group">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-[#ffaa00] text-lg group-hover:text-white transition-colors">
                         {term.name.toUpperCase()}
@@ -116,3 +116,4 @@ export default function PerAnkhWiki() {
     </div>
   );
 }
+

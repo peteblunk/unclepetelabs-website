@@ -42,9 +42,9 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
 
   return (
     <TooltipProvider>
-    <div className="min-h-screen bg-[#050505] text-[#33ff33] font-mono p-4 flex flex-col pt-24 overflow-hidden">
+    <div className="min-h-screen bg-[#050505] text-[hsl(var(--ka-green))] font-mono p-4 flex flex-col pt-24 overflow-hidden">
       {/* Header */}
-      <div className="border-b border-[#33ff33]/40 pb-2 mb-6 flex justify-between items-end px-2">
+      <div className="border-b border-[hsl(var(--ka-green))]/40 pb-2 mb-6 flex justify-between items-end px-2">
         <h1 className="text-3xl font-bold tracking-tight text-[#ffaa00] drop-shadow-[0_0_8px_rgba(255,170,0,0.6)]">
           PER-HEDJ TERMINAL
         </h1>
@@ -115,12 +115,12 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="border border-[#33ff33]/30 p-2 bg-[#111] cursor-help hover:bg-[#33ff33]/10 transition-colors">
+                  <div className="border border-[hsl(var(--ka-green))]/30 p-2 bg-[#111] cursor-help hover:bg-[hsl(var(--ka-green))]/10 transition-colors">
                     <div className="text-[10px] text-[#888] mb-1 uppercase truncate border-b border-dotted border-[#888]">Stop-Out Yield</div>
-                    <div className="text-xl sm:text-2xl text-[#33ff33]">{latestCompleted?.yield}</div>
+                    <div className="text-xl sm:text-2xl text-[hsl(var(--ka-green))]">{latestCompleted?.yield}</div>
                   </div>
                 </TooltipTrigger>
-                <TooltipContent className="bg-black text-[#33ff33] border-[#33ff33] max-w-[200px]">
+                <TooltipContent className="bg-black text-[hsl(var(--ka-green))] border-[hsl(var(--ka-green))] max-w-[200px]">
                   {getDefinition('Stop-Out Yield')}
                 </TooltipContent>
               </Tooltip>
@@ -175,28 +175,28 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
             </div>
           </div>
           
-          <div className="border border-[#33ff33]/40 bg-black/60 p-4 flex-1">
-             <h2 className="text-[#33ff33] text-sm uppercase tracking-widest border-b border-[#33ff33]/30 pb-1 mb-4">Signal Analysis (Visual)</h2>
+          <div className="border border-[hsl(var(--ka-green))]/40 bg-black/60 p-4 flex-1">
+             <h2 className="text-[hsl(var(--ka-green))] text-sm uppercase tracking-widest border-b border-[hsl(var(--ka-green))]/30 pb-1 mb-4">Signal Analysis (Visual)</h2>
              <BondGraphs data={parsedData} />
           </div>
         </div>
 
         {/* Right Column - Data Table / Squawk Box */}
-        <div className="col-span-1 lg:col-span-2 border border-[#33ff33]/40 bg-black/60 p-4 overflow-hidden flex flex-col">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#33ff33]/30 pb-2 mb-4 gap-2">
-            <h2 className="text-[#33ff33] text-[10px] sm:text-sm uppercase tracking-widest">Historical Tape (YTD)</h2>
+        <div className="col-span-1 lg:col-span-2 border border-[hsl(var(--ka-green))]/40 bg-black/60 p-4 overflow-hidden flex flex-col">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[hsl(var(--ka-green))]/30 pb-2 mb-4 gap-2">
+            <h2 className="text-[hsl(var(--ka-green))] text-[10px] sm:text-sm uppercase tracking-widest">Historical Tape (YTD)</h2>
             <div className="flex flex-wrap gap-1 sm:gap-2 text-[8px] sm:text-[10px]">
-              <button onClick={() => setFilter('ALL')} className={`px-2 sm:px-3 py-1 font-bold transition-colors ${filter === 'ALL' ? 'bg-[#33ff33] text-black' : 'border border-[#33ff33] text-[#33ff33] hover:bg-[#33ff33]/20'}`}>ALL</button>
-              <button onClick={() => setFilter('BILLS')} className={`px-2 sm:px-3 py-1 font-bold transition-colors ${filter === 'BILLS' ? 'bg-[#33ff33] text-black' : 'border border-[#33ff33] text-[#33ff33] hover:bg-[#33ff33]/20'}`}>BILLS</button>
-              <button onClick={() => setFilter('NOTES')} className={`px-2 sm:px-3 py-1 font-bold transition-colors ${filter === 'NOTES' ? 'bg-[#33ff33] text-black' : 'border border-[#33ff33] text-[#33ff33] hover:bg-[#33ff33]/20'}`}>NOTES</button>
-              <button onClick={() => setFilter('BONDS')} className={`px-2 sm:px-3 py-1 font-bold transition-colors ${filter === 'BONDS' ? 'bg-[#33ff33] text-black' : 'border border-[#33ff33] text-[#33ff33] hover:bg-[#33ff33]/20'}`}>BONDS</button>
+              <button onClick={() => setFilter('ALL')} className={`px-2 sm:px-3 py-1 font-bold transition-colors ${filter === 'ALL' ? 'bg-[hsl(var(--ka-green))] text-black' : 'border border-[hsl(var(--ka-green))] text-[hsl(var(--ka-green))] hover:bg-[hsl(var(--ka-green))]/20'}`}>ALL</button>
+              <button onClick={() => setFilter('BILLS')} className={`px-2 sm:px-3 py-1 font-bold transition-colors ${filter === 'BILLS' ? 'bg-[hsl(var(--ka-green))] text-black' : 'border border-[hsl(var(--ka-green))] text-[hsl(var(--ka-green))] hover:bg-[hsl(var(--ka-green))]/20'}`}>BILLS</button>
+              <button onClick={() => setFilter('NOTES')} className={`px-2 sm:px-3 py-1 font-bold transition-colors ${filter === 'NOTES' ? 'bg-[hsl(var(--ka-green))] text-black' : 'border border-[hsl(var(--ka-green))] text-[hsl(var(--ka-green))] hover:bg-[hsl(var(--ka-green))]/20'}`}>NOTES</button>
+              <button onClick={() => setFilter('BONDS')} className={`px-2 sm:px-3 py-1 font-bold transition-colors ${filter === 'BONDS' ? 'bg-[hsl(var(--ka-green))] text-black' : 'border border-[hsl(var(--ka-green))] text-[hsl(var(--ka-green))] hover:bg-[hsl(var(--ka-green))]/20'}`}>BONDS</button>
             </div>
           </div>
 
           <div className="overflow-x-auto flex-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
             <table className="w-full text-left text-[10px] sm:text-xs">
               <thead className="sticky top-0 bg-[#050505] z-10">
-                <tr className="text-[#888] border-b border-[#33ff33]/20">
+                <tr className="text-[#888] border-b border-[hsl(var(--ka-green))]/20">
                   <th className="pb-2 font-normal whitespace-nowrap">DATE</th>
                   <th className="pb-2 font-normal whitespace-nowrap pl-1 sm:px-2">
                     <Tooltip>
@@ -211,7 +211,7 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
                       <TooltipTrigger asChild>
                         <span className="cursor-help border-b border-dotted border-[#888]">SIZE</span>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-black text-[#33ff33] border-[#33ff33]">Total par amount allotted to all bidders</TooltipContent>
+                      <TooltipContent className="bg-black text-[hsl(var(--ka-green))] border-[hsl(var(--ka-green))]">Total par amount allotted to all bidders</TooltipContent>
                     </Tooltip>
                   </th>
                   <th className="pb-2 font-normal whitespace-nowrap pl-1">
@@ -219,7 +219,7 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
                       <TooltipTrigger asChild>
                         <span className="cursor-help border-b border-dotted border-[#888]">YIELD</span>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-black text-[#33ff33] border-[#33ff33]">{getDefinition('Stop-Out Yield')}</TooltipContent>
+                      <TooltipContent className="bg-black text-[hsl(var(--ka-green))] border-[hsl(var(--ka-green))]">{getDefinition('Stop-Out Yield')}</TooltipContent>
                     </Tooltip>
                   </th>
                   <th className="pb-2 font-normal whitespace-nowrap pl-1">
@@ -250,7 +250,7 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
               </thead>
               <tbody className="text-[#eee]">
                 {historicalTape.slice(0, 50).map((auction: any) => (
-                  <tr key={auction.id} className="border-b border-[#33ff33]/10 hover:bg-[#33ff33]/10 cursor-pointer transition-colors group">
+                  <tr key={auction.id} className="border-b border-[hsl(var(--ka-green))]/10 hover:bg-[hsl(var(--ka-green))]/10 cursor-pointer transition-colors group">
                     <td className="py-2 sm:py-3 pr-1 text-[#888] whitespace-nowrap">{auction.rawDate.toLocaleDateString(undefined, {month: 'numeric', day: 'numeric'})}</td>
                     <td className="py-2 sm:py-3 pl-1 sm:px-2 text-[#ffaa00] group-hover:text-white whitespace-nowrap max-w-[80px] sm:max-w-none truncate">
                       {auction.type.replace('-Week', '-Wk').replace('-Year', '-Yr').replace('-Month', '-Mo')}
@@ -258,7 +258,7 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
                     <td className="py-2 sm:py-3 whitespace-nowrap">
                       {auction.size.replace('.0B', 'B')}
                     </td>
-                    <td className="py-2 sm:py-3 text-[#33ff33] whitespace-nowrap pl-1">
+                    <td className="py-2 sm:py-3 text-[hsl(var(--ka-green))] whitespace-nowrap pl-1">
                       {auction.yield}
                     </td>
                     <td className="py-2 sm:py-3 text-[#00ffff] whitespace-nowrap pl-1">
@@ -275,7 +275,7 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
               </tbody>
             </table>
           </div>
-          <div className="mt-4 text-[10px] text-[#555] italic text-right border-t border-[#33ff33]/20 pt-2 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="mt-4 text-[10px] text-[#555] italic text-right border-t border-[hsl(var(--ka-green))]/20 pt-2 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2 text-white/40 group hover:text-white/80 transition-colors">
               <span className="whitespace-nowrap">Digital Services by Ka -</span>
               <div className="h-10 w-8">
@@ -297,3 +297,4 @@ export default function BondTerminalClient({ initialData }: { initialData: Treas
     </TooltipProvider>
   );
 }
+
